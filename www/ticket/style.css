@@ -1,16 +1,62 @@
 .wide-as-needed {
-  overflow: scroll;
-  white-space: nowrap;
+	overflow: scroll;
+	white-space: nowrap;
+	height: 140px;
 }
+
 .scroll { 
-  min-width: 100%;
+	min-width: 100%;
 }
 
 .featured-item {
-  display:inline-block;
-  width: 150px;
-  margin: 7px;
-  height: 90px;
+	display:inline-block;
+	width: 150px;
+	margin: 7px 7px 0px 7px;
+	height: 90px;
 }
 
+.list-item {
+	display:inline-block;
+	width: 100px;
+	margin: 7px 7px 0px 3px;
+	height: 70px;
+	padding:2px;
+	color:white;
+}
 
+.aligned-center {
+	text-align: center;
+}
+
+.light {
+	color:white;
+}
+
+.dark {
+	background-color: #222;
+}
+
+.ticket-section {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px 0px 5px 15px;
+}
+
+.title {
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+	font-style: italic;
+	margin-bottom: 5px;
+}
+
+.text {
+	font-size: 14px;
+	color: #ededed;
+}
+
+.item {
+	border-color: #333;
+}

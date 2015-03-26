@@ -1,10 +1,26 @@
-<div ng-controller="EventListController">
+<div ng-controller="EventListController" class="dark">
 
 <!-- FEATURED EVENTS -->
-<ion-scroll direction="x" class="wide-as-needed">
-  <div class="featured-item" ng-repeat="event in events" back-img="{{event.image_url}}">
-    {{event.image_url}}
+<div class="ticket-section">Popular</div>
+<ion-scroll direction="x" class="wide-as-needed dark">
+  <div class="featured-item" ng-repeat="event in events">
+    <div class="featured-item" back-img="{{event.image_url}}"></div>
+    <div class="aligned-center light">{{event.name}}</div>
   </div>
 </ion-scroll>
+
+
+<ion-list>
+  <ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events">
+      <div class="row">
+        <div class="list-item" back-img="{{event.image_url}}"></div>
+        <div class="col light">
+          <div class="title">{{event.name}}</div>
+          <div class="text">{{event.name}}</div>
+          <div class="text">{{event.name}}</div>
+        </div>
+      </div>
+  </ion-item>
+</ion-list>
 
 </div>
