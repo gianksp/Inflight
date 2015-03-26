@@ -9,9 +9,9 @@ This project is developed as a functionality extension for Inflight for Events a
 * Clone the project
 * Run ionic serve from terminal
 
-### Extracting the module Ticket Master ###
+### Extending the Ticket Master module in your own project ###
 
-Include the models, controllers and styles into the container View.
+1. Include the models, controllers and styles into the container View.
 
 ```
 #!html
@@ -21,7 +21,7 @@ Include the models, controllers and styles into the container View.
     <script src="ticket/controllers.js"></script>
 ```
 
-Include in the main app the ticketMaster module 'inflightApp.ticket'
+2. Include in the main app the ticketMaster module 'inflightApp.ticket'
 
 ```
 #!javascript
@@ -29,7 +29,7 @@ Include in the main app the ticketMaster module 'inflightApp.ticket'
 angular.module('starter', ['ionic','inflightApp.ticket'])
 ```
 
-In the View container where the module needs to be displayed, include the list view
+3. In the View container where the module needs to be displayed, include the list view
 
 ```
 #!html
