@@ -1,0 +1,16 @@
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
+.scroll { 
+  min-width: 100%;
+}
+
+.featured-item {
+  display:inline-block;
+  width: 150px;
+  margin: 7px;
+  height: 90px;
+}
+
+

@@ -1,0 +1,10 @@
+<div ng-controller="EventListController">
+
+<!-- FEATURED EVENTS -->
+<ion-scroll direction="x" class="wide-as-needed">
+  <div class="featured-item" ng-repeat="event in events" back-img="{{event.image_url}}">
+    {{event.image_url}}
+  </div>
+</ion-scroll>
+
+</div>
