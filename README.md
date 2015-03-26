@@ -1,29 +1,42 @@
-# README #
+# Inflight Ticket Master Module #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This project is developed as a functionality extension for Inflight for Events and Ticket management.
 
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+![iOS Simulator Screen Shot 26 Mar 2015 15.13.17.png](https://bitbucket.org/repo/g9x5Ez/images/2915400066-iOS%20Simulator%20Screen%20Shot%2026%20Mar%202015%2015.13.17.png)
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Clone the project
+* Run ionic serve from terminal
 
-### Contribution guidelines ###
+### Extracting the module Ticket Master ###
 
-* Writing tests
-* Code review
-* Other guidelines
+Include the models, controllers and styles into the container View.
 
-### Who do I talk to? ###
+```
+#!html
+    <!-- TICKET MASTER MODULE FILES -->
+    <link  href="ticket/style.css" rel="stylesheet">
+    <script src="ticket/models.js"></script>
+    <script src="ticket/controllers.js"></script>
+```
 
-* Repo owner or admin
-* Other community or team contact
+Include in the main app the ticketMaster module 'inflightApp.ticket'
+
+```
+#!javascript
+
+angular.module('starter', ['ionic','inflightApp.ticket'])
+```
+
+In the View container where the module needs to be displayed, include the list view
+
+```
+#!html
+      <ion-content>
+
+        <!-- VISUALS FOR THE TICKET MASTER MODULE -->
+        <div ng-include src="'ticket/view/list.html'"></div>
+
+      </ion-content>
+```
