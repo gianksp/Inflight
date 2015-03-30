@@ -60,3 +60,11 @@
 .item {
 	border-color: #333;
 }
+
+.item-complex .item-content {
+	background:#222;
+}
+
+.separator {
+	margin:20px;
+}

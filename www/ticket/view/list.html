@@ -1,26 +1,30 @@
-<div ng-controller="EventListController" class="dark">
+<ion-view title="Events" ng-controller="EventListController" class="dark">
 
-<!-- FEATURED EVENTS -->
-<div class="ticket-section">Popular</div>
-<ion-scroll direction="x" class="wide-as-needed dark">
-  <div class="featured-item" ng-repeat="event in events">
-    <div class="featured-item" back-img="{{event.image_url}}"></div>
-    <div class="aligned-center light">{{event.name}}</div>
-  </div>
-</ion-scroll>
+    <!-- NAV VIEW -->
+<!--     <ion-nav-bar class="bar-stable nav-title-slide-ios7" style="margin-bottom:10px;" ng-controller="NavController">
+    </ion-nav-bar> -->
 
-
-<ion-list>
-  <ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events">
-      <div class="row">
-        <div class="list-item" back-img="{{event.image_url}}"></div>
-        <div class="col light">
-          <div class="title">{{event.name}}</div>
-          <div class="text">{{event.name}}</div>
-          <div class="text">{{event.name}}</div>
-        </div>
+    <!-- FEATURED EVENTS -->
+    <div class="ticket-section">Popular</div>
+    <ion-scroll direction="x" class="wide-as-needed dark">
+      <div ui-sref="detail({event_index: $index})" class="featured-item" ng-repeat="event in events track by $index">
+        <div class="featured-item" back-img="{{event.image_url}}"></div>
+        <div class="aligned-center light">{{event.name}}</div>
       </div>
-  </ion-item>
-</ion-list>
+    </ion-scroll>
 
-</div>
+    <ion-list >
+      <ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events track by $index" href="#/detail/{{$index}}">
+          <div class="row">
+            <div class="list-item" back-img="{{event.image_url}}"></div>
+            <div class="col">
+              <div class="title">{{event.name}}</div>
+              <div class="text">{{event.name}}</div>
+              <div class="text">{{event.name}}</div>
+            </div>
+          </div>
+      </ion-item>
+    </ion-list>
+
+
+</ion-view>

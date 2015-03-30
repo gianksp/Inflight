@@ -7,8 +7,60 @@
  * @param  {[type]} Event) {}]         [description]
  * @return {[type]}        [description]
  */
-angular.module('inflightApp.ticket').controller('EventListController', ['$scope','$http','Event',
-  function($scope,$http,Event) {
+angular.module('inflightApp.ticket')
+
+/**
+ * Routes configuration
+ * @param  {[type]} $stateProvider      [description]
+ * @param  {[type]} $urlRouterProvider) {             $stateProvider    .state('list', {      url: "/list",      templateUrl: "ticket/view/list.html"    })    .state('detail', {      url: "/detail",      templateUrl: "ticket/view/detail.html"          })      $urlRouterProvider.otherwise("/list");} [description]
+ * @return {[type]}                     [description]
+ */
+.config(function($stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+    .state('list', {
+      url: "/",
+      templateUrl: "ticket/view/list.html"
+    })
+    .state('detail', {
+      url: "/detail/:event_index",
+      templateUrl: "ticket/view/detail.html"
+      
+    })
+
+    $urlRouterProvider.otherwise("/");
+})
+
+/*********************************************************    CONTROLLERS    **************************************************************/
+
+/**
+ * Master view controller. Handles behavior of list of events, featured events, etc
+ * @param  {[type]} $scope [description]
+ * @param  {[type]} $http  [description]
+ * @param  {Array}  Event) {                   $scope.events [description]
+ * @return {[type]}        [description]
+ */
+.controller('NavController', ['$scope','$http','$state','Event',
+  function($scope,$http,$state,Event) {
+
+    
+    $scope.displayBackButton = function() {
+      var show = $state.current.name == 'detail';
+      console.log(show);
+      return show;
+    }
+
+}])
+
+/**
+ * Master view controller. Handles behavior of list of events, featured events, etc
+ * @param  {[type]} $scope [description]
+ * @param  {[type]} $http  [description]
+ * @param  {Array}  Event) {                   $scope.events [description]
+ * @return {[type]}        [description]
+ */
+.controller('EventListController', ['$scope','$http','$state','Event',
+  function($scope,$http,$state,Event) {
 
     //Initialise 
     $scope.events = [];
@@ -16,7 +68,6 @@ angular.module('inflightApp.ticket').controller('EventListController', ['$scope'
     //Load events from model
     Event.findAll().then(function (events) {
       $scope.events = events;
-      console.log(events);
     });
 
 }])
@@ -30,11 +81,19 @@ angular.module('inflightApp.ticket').controller('EventListController', ['$scope'
  * @param  {[type]} Event) {}]         [description]
  * @return {[type]}        [description]
  */
-.controller('EventDetailController', ['$scope','$http','Event',
-  function($scope,$http,Event) {
+.controller('EventDetailController', ['$scope','$http','$state','$stateParams','Event',
+  function($scope,$http,$state,$stateParams, Event) {
 
+    Event.findAll().then(function (events) {
+      $scope.events = events;
+      $scope.selectedEvent = events[$stateParams.event_index];
+      console.log($scope.selectedEvent.image_url);
+    });
 
 }])
+
+/*********************************************************    DIRECTIVES    **************************************************************/
+
 
 /**
  * Directive for setting an image as background for a div
@@ -52,6 +111,11 @@ angular.module('inflightApp.ticket').controller('EventListController', ['$scope'
     };
 })
 
+/**
+ * Divider between rows in list view
+ * @param  {String} $timeout) {               var lastDivideKey [description]
+ * @return {[type]}           [description]
+ */
 .directive('autoListDivider', function($timeout) {  
 	var lastDivideKey = "";
 
@@ -80,7 +144,12 @@ angular.module('inflightApp.ticket').controller('EventListController', ['$scope'
 	}
 })
 
- 
+/**
+ * Fix within contrainer another div so it is sticky
+ * @param  {[type]} $document             [description]
+ * @param  {[type]} $ionicScrollDelegate) {              var transition [description]
+ * @return {[type]}                       [description]
+ */
 .directive('affixWithinContainer', function($document, $ionicScrollDelegate) {
  
   var transition = function(element, dy, executeImmediately) {

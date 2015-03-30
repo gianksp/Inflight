@@ -16,4 +16,4 @@ angular.module('starter', ['ionic','inflightApp.ticket'])
       StatusBar.styleDefault();
     }
   });
-})
+});
