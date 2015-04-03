@@ -82,3 +82,8 @@
 
 .fixedrow {
 }
+
+#logo a img {
+    display:block;
+    margin:auto;
+}
