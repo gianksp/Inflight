@@ -1,4 +1,4 @@
-<ion-view title="Event" ng-controller="EventDetailController" class="dark">
+<ion-view title="Event" ng-controller="EventVenueController" class="dark">
 
   <!-- DETAIL CONTENT -->
   <ion-content>
@@ -14,19 +14,11 @@
         </div>
       </div>
 
-      <ion-list>
-      <ion-item href="#/detail/{{itemIndex}}/ticket">
-          FIND TICKETS
-      </ion-item>
-      <ion-item href="#/detail/{{itemIndex}}/artist">
-          ABOUT THE ARTIST
-      </ion-item>
-      <ion-item href="#/detail/{{itemIndex}}/venue">
-          ABOUT THE VENUE
-      </ion-item>
-
-    </ion-list>
-
+	<div class="card">
+	  <div class="item item-text-wrap">
+	    This is a basic Card which contains an item that has wrapping text.
+	  </div>
+	</div>
   </ion-content>
 
 </ion-view>

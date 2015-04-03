@@ -1,0 +1,176 @@
+<ion-view title="Event" ng-controller="EventTicketController" class="dark">
+
+<!-- DETAIL CONTENT -->
+<ion-content>
+
+      <div class="row fixedrow">
+        <div class="col-25 separator hidden-overflow" >
+          <img style="width:100%; height:100%;" ng-src="{{selectedEvent.image_url}}"></img>
+        </div>
+        <div class="col-50 separator">
+          <h4 class="light">{{selectedEvent.name}}</h4>
+          <h5 class="light">{{selectedEvent.name}}</h5>
+          <h5 class="light">{{selectedEvent.name}}</h5>
+        </div>
+      </div>
+
+<div class="card">
+	<div class="item item-text-wrap">
+		<ion-header-bar align-title="left" class="bar-positive">Full Price Ticket</ion-header-bar>
+
+		<!-- NUMBER OF ENTRANCES -->
+		<div class="list" style="margin-top:44px;">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Number
+				</div>
+				<select>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- PRICE -->
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Price
+				</div>
+				<select>
+					<option>10£</option>
+					<option>15£</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- SECTION -->
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Price
+				</div>
+				<select>
+					<option>Close</option>
+					<option>Medium</option>
+					<option>Far</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- BUY BUTTON -->
+		<button class="button button-balanced" ng-click="purchase()">Buy</button>
+	</div>
+</div>
+
+<div class="card">
+	<div class="item item-text-wrap">
+		<ion-header-bar align-title="left" class="bar-positive">Child U15 Price Ticket</ion-header-bar>
+		<!-- NUMBER OF ENTRANCES -->
+		<div class="list" style="margin-top:44px;">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Number
+				</div>
+				<select>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- PRICE -->
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Price
+				</div>
+				<select>
+					<option>10£</option>
+					<option>15£</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- SECTION -->
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Price
+				</div>
+				<select>
+					<option>Close</option>
+					<option>Medium</option>
+					<option>Far</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- BUY BUTTON -->
+		<button class="button button-balanced" ng-click="purchase()">Buy</button>
+
+	</div>
+</div>
+
+<div class="card">
+	<div class="item item-text-wrap">
+		<ion-header-bar align-title="left" class="bar-positive">Family Tickets(Max 2 adults)</ion-header-bar>
+		
+		<!-- NUMBER OF ENTRANCES -->
+		<div class="list" style="margin-top:44px;">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Number
+				</div>
+				<select>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- PRICE -->
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Price
+				</div>
+				<select>
+					<option>10£</option>
+					<option>15£</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- SECTION -->
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Price
+				</div>
+				<select>
+					<option>Close</option>
+					<option>Medium</option>
+					<option>Far</option>
+				</select>
+			</label>
+		</div>
+
+		<!-- BUY BUTTON -->
+		<button class="button button-balanced" ng-click="purchase()">Buy</button>
+
+	</div>
+</div>
+
+</ion-content>
+
+</ion-view>

@@ -25,7 +25,18 @@ angular.module('inflightApp.ticket')
     .state('detail', {
       url: "/detail/:event_index",
       templateUrl: "ticket/view/detail.html"
-      
+    })
+    .state('artist', {
+      url: "/detail/:event_index/artist",
+      templateUrl: "ticket/view/artist.html"
+    })
+    .state('ticket', {
+      url: "/detail/:event_index/ticket",
+      templateUrl: "ticket/view/ticket.html"
+    })
+    .state('venue', {
+      url: "/detail/:event_index/venue",
+      templateUrl: "ticket/view/venue.html"
     })
 
     $urlRouterProvider.otherwise("/");
@@ -43,7 +54,6 @@ angular.module('inflightApp.ticket')
 .controller('NavController', ['$scope','$http','$state','Event',
   function($scope,$http,$state,Event) {
 
-    
     $scope.displayBackButton = function() {
       var show = $state.current.name == 'detail';
       console.log(show);
@@ -64,6 +74,14 @@ angular.module('inflightApp.ticket')
 
     //Initialise 
     $scope.events = [];
+    $scope.viewModel = {};
+
+    //Watch the search query
+    $scope.applySearchFilter = function() {
+      Event.findAll($scope.viewModel.search).then(function(events){
+        $scope.events = events;
+      });
+    }
 
     //Load events from model
     Event.findAll().then(function (events) {
@@ -84,10 +102,106 @@ angular.module('inflightApp.ticket')
 .controller('EventDetailController', ['$scope','$http','$state','$stateParams','Event',
   function($scope,$http,$state,$stateParams, Event) {
 
+    $scope.itemIndex = $stateParams.event_index;
     Event.findAll().then(function (events) {
       $scope.events = events;
-      $scope.selectedEvent = events[$stateParams.event_index];
-      console.log($scope.selectedEvent.image_url);
+      $scope.selectedEvent = events[$scope.itemIndex];
+      console.log($scope.selectedEvent);
+    });
+
+}])
+
+/**
+ * Event Detail Ticket find
+ * @param  {[type]} $scope       [description]
+ * @param  {[type]} $http        [description]
+ * @param  {[type]} $state       [description]
+ * @param  {[type]} $stateParams [description]
+ * @param  {[type]} Event)       {               $scope.itemIndex [description]
+ * @return {[type]}              [description]
+ */
+.controller('EventTicketController', ['$scope','$http','$ionicPopup','$state','$stateParams','Event',
+  function($scope,$http,$ionicPopup,$state,$stateParams, Event) {
+
+    $scope.itemIndex = $stateParams.event_index;
+    Event.findAll().then(function (events) {
+      $scope.events = events;
+      $scope.selectedEvent = events[$scope.itemIndex];
+      console.log($scope.selectedEvent);
+    });
+
+    /**
+     * Purchase tickets
+     * @return {[type]} [description]
+     */
+    $scope.purchase = function() {
+      $scope.showConfirm();
+    }
+
+    $scope.showConfirm = function() {
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Purchase Tickets',
+         template: 'Are you sure you want to purchase the selected items'
+       });
+       confirmPopup.then(function(res) {
+         if(res) {
+            $scope.showAlert();
+         } else {
+           console.log('Not sure');
+         }
+       });
+     };
+
+     // An alert dialog
+     $scope.showAlert = function() {
+       var alertPopup = $ionicPopup.alert({
+         title: 'Thank you for purchasing!',
+         template: 'You will be receiving an email with the information.'
+       });
+       alertPopup.then(function(res) {
+         console.log('Thank you for not eating my delicious ice cream cone');
+       });
+     };
+}])
+
+/**
+ * Event Detail Venue info
+ * @param  {[type]} $scope       [description]
+ * @param  {[type]} $http        [description]
+ * @param  {[type]} $state       [description]
+ * @param  {[type]} $stateParams [description]
+ * @param  {[type]} Event)       {               $scope.itemIndex [description]
+ * @return {[type]}              [description]
+ */
+.controller('EventVenueController', ['$scope','$http','$state','$stateParams','Event',
+  function($scope,$http,$state,$stateParams, Event) {
+
+    $scope.itemIndex = $stateParams.event_index;
+    Event.findAll().then(function (events) {
+      $scope.events = events;
+      $scope.selectedEvent = events[$scope.itemIndex];
+      console.log($scope.selectedEvent);
+    });
+
+}])
+
+/**
+ * Event Detail Artist info
+ * @param  {[type]} $scope       [description]
+ * @param  {[type]} $http        [description]
+ * @param  {[type]} $state       [description]
+ * @param  {[type]} $stateParams [description]
+ * @param  {[type]} Event)       {               $scope.itemIndex [description]
+ * @return {[type]}              [description]
+ */
+.controller('EventArtistController', ['$scope','$http','$state','$stateParams','Event',
+  function($scope,$http,$state,$stateParams, Event) {
+
+    $scope.itemIndex = $stateParams.event_index;
+    Event.findAll().then(function (events) {
+      $scope.events = events;
+      $scope.selectedEvent = events[$scope.itemIndex];
+      console.log($scope.selectedEvent);
     });
 
 }])

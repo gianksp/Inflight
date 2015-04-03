@@ -13,7 +13,7 @@ angular.module('inflightApp.ticket',[])
      * @type {Array}
      */
     var events = [
-      { id:"1",  group:"Today", name:"Spring Party",      date:new Date(), image_url:"http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx", popular:true },
+      { id:"1",  group:"Today", name:"Spring Party",      date:new Date(), image_url:"http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx", popular:true, artist:"John Williams", ticket:true, venue:"Here" },
       { id:"2",  group:"Today", name:"Poker Tournament",  date:new Date(), image_url:"http://www.aaavegas.com/wp-content/uploads/2011/07/November-Nine-Group-Shot-400px.jpg", popular:true },
       { id:"3",  group:"Tomorrow", name:"Expats in Dublin",  date:new Date(), image_url:"https://worldmovingblog.files.wordpress.com/2013/03/400px-keizersgrachtreguliersgrachtamsterdam.jpg?w=300&h=200", popular:true },
       { id:"4",  group:"Tomorrow", name:"Women Tech Makers",  date:new Date(), image_url:"http://www.ryerson.ca/news/news/Research_News/20120120_sleep/jcr:content/center/newsrelease/image.img.jpg/1327004308860.jpg", popular:true },
@@ -41,9 +41,17 @@ angular.module('inflightApp.ticket',[])
      * Find all Events
      * @return {[type]} [description]
      */
-    Event.findAll = function() {
+    Event.findAll = function(filter) {
       var deferred = $q.defer();
-      deferred.resolve(events);
+      var filteredEvents = [];
+      for (e in events) {
+        eventTarget = events[e];
+        //Add to filtered array to return either if there are no filters or if the filter is contained within the name of the event
+        if (filter == null || filter == '' || eventTarget.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+          filteredEvents.push(eventTarget);
+        }
+      }
+      deferred.resolve(filteredEvents);
       return deferred.promise;
     }
 
