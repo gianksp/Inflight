@@ -9,20 +9,23 @@
         </div>
         <div class="col-50 separator">
           <h4 class="light">{{selectedEvent.name}}</h4>
-          <h5 class="light">{{selectedEvent.name}}</h5>
-          <h5 class="light">{{selectedEvent.name}}</h5>
+          <h5 class="light">{{selectedEvent.venue}}</h5>
+          <h5 class="light">{{selectedEvent.group}} {{selectedEvent.time}}</h5>
         </div>
       </div>
 
       <ion-list>
       <ion-item href="#/detail/{{itemIndex}}/ticket">
-          FIND TICKETS
+          <img src="img/ticket.png" style="width:20px; height:20px; margin-right: 15px;"></img>FIND TICKETS
+          <i class="icon ion-chevron-right icon-accessory" style="float:right;"></i>
       </ion-item>
       <ion-item href="#/detail/{{itemIndex}}/artist">
-          ABOUT THE ARTIST
+          <img src="img/artist.png" style="width:20px; height:20px; margin-right: 15px;"></img>ABOUT THE ARTIST
+          <i class="icon ion-chevron-right icon-accessory" style="float:right;"></i>
       </ion-item>
       <ion-item href="#/detail/{{itemIndex}}/venue">
-          ABOUT THE VENUE
+          <img src="img/location.png" style="width:20px; height:20px; margin-right: 15px;"></img>ABOUT THE VENUE
+          <i class="icon ion-chevron-right icon-accessory" style="float:right;"></i>
       </ion-item>
 
     </ion-list>

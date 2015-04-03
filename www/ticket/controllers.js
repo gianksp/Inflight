@@ -83,6 +83,12 @@ angular.module('inflightApp.ticket')
       });
     }
 
+    //Clear search
+    $scope.clearSearch = function() {
+      console.log("cleared");
+      $scope.viewModel = {};
+    }
+
     //Load events from model
     Event.findAll().then(function (events) {
       $scope.events = events;

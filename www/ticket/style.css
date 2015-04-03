@@ -50,15 +50,14 @@
 
 .title {
 	font-size: 18px;
-	color: white;
+	color: darkslateblue;
 	font-weight: bold;
-	font-style: italic;
 	margin-bottom: 5px;
 }
 
 .text {
 	font-size: 14px;
-	color: #ededed;
+	color: #444;
 }
 
 .item {
@@ -66,7 +65,7 @@
 }
 
 .item-complex .item-content {
-	background:#222;
+	background:#f3f3f3;
 }
 
 .separator {
