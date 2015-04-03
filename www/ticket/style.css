@@ -64,6 +64,10 @@
 	border-color: #333;
 }
 
+.black {
+	background:black;
+}
+
 .item-complex .item-content {
 	background:#f3f3f3;
 }
