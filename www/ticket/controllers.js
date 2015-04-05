@@ -92,7 +92,6 @@ angular.module('inflightApp.ticket')
       $scope.modal.show();
     }
 
-
     //Watch the search query
     $scope.applySearchFilter = function() {
       Event.findAll($scope.viewModel.search, $scope.selectedLocation, $scope.filterFavorite ).then(function(events){

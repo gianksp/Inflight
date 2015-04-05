@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view style="z-index:1000 !important;">
   <ion-header-bar>
     <h1 class="title">Date</h1>
     <div class="buttons">
@@ -7,7 +7,7 @@
   </ion-header-bar>
   <ion-content>
     
-    <datetimepicker ng-model="tmp.newDate"></datetimepicker>
+    <datetimepicker ng-model="filterDate" ng-click="console.log('yes')"></datetimepicker>
 
   </ion-content>
 </ion-modal-view>
