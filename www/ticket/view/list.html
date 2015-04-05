@@ -1,6 +1,6 @@
 <ion-view title="Events" ng-controller="EventListController" class="dark">
 
-<ion-content>
+<ion-content class="black">
 
 <div id="logo" class="row" style="background-color:black !important; margin:0 auto;">
   <img style="margin:0 auto; width:250px; height:auto;" src="img/logo.png"></img>
@@ -27,6 +27,11 @@
     <span class="small light">Flight destination:</span>
     <span class="big dark-red">London</span>
 </div>
+
+<ti-segmented-control on-select="toggleFavorite($index)" style="width: 70%; margin:0 auto;">
+    <ti-segmented-control-button class="button-positive" title="'Favorites'"></ti-segmented-control-button>
+    <ti-segmented-control-button class="button-positive" title="'Nearby'" selected></ti-segmented-control-button>
+</ti-segmented-control>
 
 <div id="search-box" class="bar bar-header item-input-inset black">
   <div class="item-input-wrapper dark">

@@ -77,58 +77,25 @@ angular.module('inflightApp.ticket')
     $scope.cities = [];
     $scope.viewModel = {};
     $scope.selectedLocation = City.defaultCity();
+    $scope.filterFavorite = false;
 
-    // $ionicPopup.show({
-    //  template: '<datetimepicker ng-model="tmp.newDate"></datetimepicker>',
-    //  title: "Birth date",
-    //  scope: $scope,
-    //  buttons: [
-    //    { text: 'Cancel' },
-    //    {
-    //      text: '<b>Save</b>',
-    //      type: 'button-positive',
-    //      onTap: function(e) {
-    //        $scope.newUser.birthDate = $scope.tmp.newDate;
-    //      }
-    //    }
-    //  ]
-    // });
-    // 
-    // 
-    // 
-    // 
-    // 
     $scope.newUser = {};
+
+    $scope.toggleFavorite = function(index) {
+      $scope.filterFavorite = index == 0 ? true : false;
+      $scope.applySearchFilter();
+    }
 
     $scope.openDatePicker = function() {
       $scope.tmp = {};
       $scope.tmp.newDate = $scope.newUser.birthDate;
-      $scope.dateModal.show();
-      // var birthDatePopup = $ionicPopup.show({
-      //  template: '<datetimepicker ng-model="tmp.newDate"></datetimepicker>',
-      //  title: "Birth date",
-      //  scope: $scope,
-      //  buttons: [
-      //    { text: 'Cancel' },
-      //    {
-      //      text: '<b>Save</b>',
-      //      type: 'button-positive',
-      //      onTap: function(e) {
-      //        $scope.newUser.birthDate = $scope.tmp.newDate;
-      //      }
-      //    }
-      //  ]
-      // });
+      $scope.modal.show();
     }
 
 
     //Watch the search query
     $scope.applySearchFilter = function() {
-
-      Event.findAll($scope.viewModel.search).then(function(events){
-
-        //Apply location filter to those events
-        
+      Event.findAll($scope.viewModel.search, $scope.selectedLocation, $scope.filterFavorite ).then(function(events){
         //Set events to display
         $scope.events = events;
       });
