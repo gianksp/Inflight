@@ -1,0 +1,15 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Location</h1>
+    <div class="buttons">
+      <button class="button" ng-click="closeModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="city in cities track by $index" ng-click="selectCity(city);">
+        <b>{{city.name}} <small>({{city.country}})</small></b>
+      </ion-item>
+      </ion-list>
+  </ion-content>
+</ion-modal-view>

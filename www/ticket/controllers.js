@@ -69,16 +69,67 @@ angular.module('inflightApp.ticket')
  * @param  {Array}  Event) {                   $scope.events [description]
  * @return {[type]}        [description]
  */
-.controller('EventListController', ['$scope','$http','$state','Event',
-  function($scope,$http,$state,Event) {
+.controller('EventListController', ['$scope','$http','$state','$ionicModal','$ionicPopup','Event','City',
+  function($scope,$http,$state,$ionicModal,$ionicPopup, Event, City) {
 
     //Initialise 
     $scope.events = [];
+    $scope.cities = [];
     $scope.viewModel = {};
+    $scope.selectedLocation = City.defaultCity();
+
+    // $ionicPopup.show({
+    //  template: '<datetimepicker ng-model="tmp.newDate"></datetimepicker>',
+    //  title: "Birth date",
+    //  scope: $scope,
+    //  buttons: [
+    //    { text: 'Cancel' },
+    //    {
+    //      text: '<b>Save</b>',
+    //      type: 'button-positive',
+    //      onTap: function(e) {
+    //        $scope.newUser.birthDate = $scope.tmp.newDate;
+    //      }
+    //    }
+    //  ]
+    // });
+    // 
+    // 
+    // 
+    // 
+    // 
+    $scope.newUser = {};
+
+    $scope.openDatePicker = function() {
+      $scope.tmp = {};
+      $scope.tmp.newDate = $scope.newUser.birthDate;
+      $scope.dateModal.show();
+      // var birthDatePopup = $ionicPopup.show({
+      //  template: '<datetimepicker ng-model="tmp.newDate"></datetimepicker>',
+      //  title: "Birth date",
+      //  scope: $scope,
+      //  buttons: [
+      //    { text: 'Cancel' },
+      //    {
+      //      text: '<b>Save</b>',
+      //      type: 'button-positive',
+      //      onTap: function(e) {
+      //        $scope.newUser.birthDate = $scope.tmp.newDate;
+      //      }
+      //    }
+      //  ]
+      // });
+    }
+
 
     //Watch the search query
     $scope.applySearchFilter = function() {
+
       Event.findAll($scope.viewModel.search).then(function(events){
+
+        //Apply location filter to those events
+        
+        //Set events to display
         $scope.events = events;
       });
     }
@@ -87,11 +138,56 @@ angular.module('inflightApp.ticket')
     $scope.clearSearch = function() {
       console.log("cleared");
       $scope.viewModel = {};
-    }
+    };
+
+    //Select new city to filter by
+    $scope.selectCity = function(city) {
+      $scope.selectedLocation = city;
+      $scope.closeModal();
+    };
 
     //Load events from model
     Event.findAll().then(function (events) {
       $scope.events = events;
+    });
+
+    //Load all cities
+    City.findAll().then(function (cities) {
+      $scope.cities = cities;
+    }); 
+
+    $ionicModal.fromTemplateUrl('ticket/view/date.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.dateModal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('ticket/view/location.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+
+    $scope.changeLocation = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+      $scope.applySearchFilter();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
     });
 
 }])
@@ -223,7 +319,6 @@ angular.module('inflightApp.ticket')
 .directive('backImg', function(){
     return function(scope, element, attrs){
         var url = attrs.backImg;
-        console.log(url);
         element.css({
             'background-image': 'url(' + url +')',
             'background-size' : 'cover'
