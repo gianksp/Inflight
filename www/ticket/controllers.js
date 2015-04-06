@@ -9,39 +9,6 @@
  */
 angular.module('inflightApp.ticket')
 
-/**
- * Routes configuration
- * @param  {[type]} $stateProvider      [description]
- * @param  {[type]} $urlRouterProvider) {             $stateProvider    .state('list', {      url: "/list",      templateUrl: "ticket/view/list.html"    })    .state('detail', {      url: "/detail",      templateUrl: "ticket/view/detail.html"          })      $urlRouterProvider.otherwise("/list");} [description]
- * @return {[type]}                     [description]
- */
-.config(function($stateProvider, $urlRouterProvider) {
-
-  $stateProvider
-    .state('list', {
-      url: "/",
-      templateUrl: "ticket/view/list.html"
-    })
-    .state('detail', {
-      url: "/detail/:event_index",
-      templateUrl: "ticket/view/detail.html"
-    })
-    .state('artist', {
-      url: "/detail/:event_index/artist",
-      templateUrl: "ticket/view/artist.html"
-    })
-    .state('ticket', {
-      url: "/detail/:event_index/ticket",
-      templateUrl: "ticket/view/ticket.html"
-    })
-    .state('venue', {
-      url: "/detail/:event_index/venue",
-      templateUrl: "ticket/view/venue.html"
-    })
-
-    $urlRouterProvider.otherwise("/");
-})
-
 /*********************************************************    CONTROLLERS    **************************************************************/
 
 /**
@@ -55,7 +22,7 @@ angular.module('inflightApp.ticket')
   function($scope,$http,$state,Event) {
 
     $scope.displayBackButton = function() {
-      var show = $state.current.name == 'detail';
+      var show = $state.current.name == 'ticketmaster.detail';
       console.log(show);
       return show;
     }
