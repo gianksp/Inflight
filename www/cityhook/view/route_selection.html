@@ -1,6 +1,6 @@
 <ion-view title="Cityhook" ng-controller="RouteController" ng-init="initialize()" class="dark">
 
-<ion-content class="info" scrollbar-y="yes">
+<ion-content class="info-light" scrollbar-y="yes">
 
 <script id="my-popover.html" type="text/ng-template">
   <ion-popover-view>
@@ -17,7 +17,7 @@
 
 <div class="list card">
 
-  <div class="item header dark-header round">
+  <div class="item header dark-header">
     <h2 class="aligned-center light">Transit Route Selection</h2>
   </div>
 
@@ -31,14 +31,14 @@
   <button class="round btn aligned-center button light dark-header" style="width:100%; height:100%;" pick-a-date="date"><a style="float:left;">11 NOVEMBER 2015</a>  <i style="float:right;"class="icon ion-chevron-down"></i>
   </button>
 
-  <div style="height:400px; margin:30px 100px 30px 100px;">
+  <div style="height:200px; margin:30px 10px 30px 10px;">
 
-     <div class="map" id="map" style="with:100%; height:100%;" data-tap-disabled="true"></div>
+     <div class="map round" id="map-detail" style="with:100%; height:100%;" data-tap-disabled="true"></div>
 
 
   </div>
 
-  <button class="round btn aligned-center button red-btn light" style="width:100%; height:100%;"><strong>SEARCH ROUTES</strong><i style="margin-left:10px;"class="icon ion-chevron-right"></i></button>
+  <button class="round btn aligned-center button red-btn light" style="width:100%; height:100%;" ng-click="findRoutes()"><strong>SEARCH ROUTES</strong><i style="margin-left:10px;"class="icon ion-chevron-right"></i></button>
 
   </div>
 

@@ -1,87 +1,52 @@
-<ion-view title="Events" ng-controller="EventListController" class="dark">
+<ion-view title="Cityhook" ng-controller="RouteDetailController"  class="dark">
 
-<ion-content class="black">
+<ion-content class="info-light" scrollbar-y="yes">
 
-<div id="logo" class="row" style="background-color:black !important; margin:0 auto;">
-  <img style="margin:0 auto; width:250px; height:auto;" src="img/logo.png"></img>
-</div>
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h1 class="title">My Popover Title</h1>
+    </ion-header-bar>
+    <ion-content>
+      Hello!
+    </ion-content>
+  </ion-popover-view>
+</script>
 
-<!-- <div class="row black">
-  <div class="col">
-    <div style="float:right;">
-      <h4 style="color:red;">DUBLIN</h4>
-      <h2 class="light">DUB</h2>
-    </div>
+
+
+<div class="list card">
+
+  <div class="item header dark-header">
+    <h2 class="aligned-center light">Select a Route</h2>
   </div>
-  <div style="text-align: center; margin-top:20px;" class="col light">
-    <h3 class="light">To</h3>
-  </div>
-  <div class="col">
-    <div style="float:left;">
-      <h4 style="color:red;">LONDON</h4>
-      <h2 class="light">LHR</h2>
-    </div>
-  </div>
-</div> -->
-<div class="parent black aligned-center ">
-    <span class="small light">Flight destination:</span>
-    <span class="big dark-red">London</span>
-</div>
-
-<ti-segmented-control on-select="toggleFavorite($index)" style="width: 70%; margin:0 auto;">
-    <ti-segmented-control-button class="button-positive" title="'Favorites'"></ti-segmented-control-button>
-    <ti-segmented-control-button class="button-positive" title="'Nearby'" selected></ti-segmented-control-button>
-</ti-segmented-control>
-
-<div id="search-box" class="bar bar-header item-input-inset black" >
-  <div class="item-input-wrapper dark">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input class="light" type="text" placeholder="Location" ng-model="selectedLocation.name" ng-click="changeLocation()">
-    <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
-  </div>
-  <button pick-a-date="date" class="ion-calendar"></button>
-</div>
-
-<!-- 
-<div>
- <label class="item item-input" ng-click="openDatePicker()">
-                <span class="input-label">From date</span>
-                <input type="text" ng-model="newUser.formattedBirthDate">
-              </label>
-</div> -->
-
-<div id="search-box" class="bar bar-header item-input-inset black">
-  <div class="item-input-wrapper">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input type="search" placeholder="Arstist/Team/Show or Venue" ng-model="viewModel.search" ng-change="applySearchFilter()">
-    <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
-  </div>
-</div>
-
-<!-- FEATURED EVENTS -->
-<div ng-show="viewModel.search == null || viewModel.search.length == 0">
-  <div class="ticket-section">Popular</div>
-  <ion-scroll direction="x" class="wide-as-needed dark">
-  <div ui-sref="detail({event_index: $index})" class="featured-item" ng-repeat="event in events track by $index">
-    <div class="featured-item" back-img="{{event.image_url}}"></div>
-    <div class="aligned-center light">{{event.name}}</div>
-  </div>
-</ion-scroll>
-</div>
 
 <ion-list>
-<ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events track by $index" href="#/detail/{{$index}}">
-<div class="row">
-  <div class="list-item" back-img="{{event.image_url}}"></div>
-  <div class="col">
-    <div class="title">{{event.name}}</div>
-    <div class="text">{{event.venue}}</div>
-    <div class="text">{{event.time}}</div>
-  </div>
-  <i class="icon ion-chevron-right icon-accessory" style="margin-top:25px;"></i>
-</div>
-</ion-item>
+  <ion-item ng-repeat="item in [1,2,3,4,5,6,7,8,9,10] track by $index" href="#/cityhook/purchase/{{$index}}">
+    <h2 >Name of Company</h2>
+    <h5 >Operated by Company</h5>
+    <div class="row">
+      <div class="col-33">
+        <a>85€</a>
+        <h5 class="red-txt">Per passenger one-way</h5>
+      </div>
+      <div class="col-33">
+        <a>45mins</a>
+        <h5 class="red-txt">Journey time</h5>
+      </div>
+      <div class="col-33">
+        <img src="img/mobile.png" style="width:25px; height:25px;">
+        <h5 class="red-txt">Mobile<br>ticketing</h5>
+      </div>
+    </div>
+  </ion-item>
 </ion-list>
-</ion-content>
+
+</div>
+
+
+
+</ion-content> 
+
 
 </ion-view>

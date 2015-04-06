@@ -36,8 +36,11 @@ angular.module('inflightApp.cityhook')
  * @param  {Array}  Event) {                   $scope.events [description]
  * @return {[type]}        [description]
  */
-.controller('WelcomeController', ['$scope','$compile','$http','$state','$ionicModal','$ionicPopup','Event','City',
-  function($scope,$compile,$http,$state,$ionicModal,$ionicPopup, Event, City) {
+.controller('WelcomeController', ['$scope','$compile','$http','$state','$ionicModal','$ionicPopup','Event','City','$state','$stateParams',
+  function($scope,$compile,$http,$state,$ionicModal,$ionicPopup, Event, City,$state,$stateParams) {
+
+$scope.statusCode = $stateParams.statusCode;
+console.log($scope.statusCode);
 
  $scope.initialize = function() {
     var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
@@ -97,7 +100,7 @@ angular.module('inflightApp.cityhook')
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map"),
+    var map = new google.maps.Map(document.getElementById("map-detail"),
         mapOptions);
 
 
@@ -113,11 +116,9 @@ angular.module('inflightApp.cityhook')
 
     $scope.map = map;
   }
-  
+
     $scope.routeType = $stateParams.type;
 
-  // .fromTemplate() method
-  var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
 
   $scope.popover = $ionicPopover.fromTemplate(template, {
     scope: $scope
@@ -150,6 +151,10 @@ angular.module('inflightApp.cityhook')
     // Execute action
   });
 
+  $scope.findRoutes = function(){
+    console.log("gg");
+    $state.go('routeDetail');
+  }
 
 }])
 
@@ -162,48 +167,10 @@ angular.module('inflightApp.cityhook')
  * @param  {[type]} Event)       {               $scope.itemIndex [description]
  * @return {[type]}              [description]
  */
-.controller('EventTicketController', ['$scope','$http','$ionicPopup','$state','$stateParams','Event',
+.controller('RouteDetailController', ['$scope','$http','$ionicPopup','$state','$stateParams','Event',
   function($scope,$http,$ionicPopup,$state,$stateParams, Event) {
 
-    $scope.itemIndex = $stateParams.event_index;
-    Event.findAll().then(function (events) {
-      $scope.events = events;
-      $scope.selectedEvent = events[$scope.itemIndex];
-      console.log($scope.selectedEvent);
-    });
 
-    /**
-     * Purchase tickets
-     * @return {[type]} [description]
-     */
-    $scope.purchase = function() {
-      $scope.showConfirm();
-    }
-
-    $scope.showConfirm = function() {
-       var confirmPopup = $ionicPopup.confirm({
-         title: 'Purchase Tickets',
-         template: 'Are you sure you want to purchase the selected items'
-       });
-       confirmPopup.then(function(res) {
-         if(res) {
-            $scope.showAlert();
-         } else {
-           console.log('Not sure');
-         }
-       });
-     };
-
-     // An alert dialog
-     $scope.showAlert = function() {
-       var alertPopup = $ionicPopup.alert({
-         title: 'Thank you for purchasing!',
-         template: 'You will be receiving an email with the information.'
-       });
-       alertPopup.then(function(res) {
-         console.log('Thank you for not eating my delicious ice cream cone');
-       });
-     };
 }])
 
 /**
@@ -215,15 +182,13 @@ angular.module('inflightApp.cityhook')
  * @param  {[type]} Event)       {               $scope.itemIndex [description]
  * @return {[type]}              [description]
  */
-.controller('EventVenueController', ['$scope','$http','$state','$stateParams','Event',
+.controller('PurchaseController', ['$scope','$http','$state','$stateParams','Event',
   function($scope,$http,$state,$stateParams, Event) {
 
-    $scope.itemIndex = $stateParams.event_index;
-    Event.findAll().then(function (events) {
-      $scope.events = events;
-      $scope.selectedEvent = events[$scope.itemIndex];
-      console.log($scope.selectedEvent);
-    });
+  $scope.pay = function(){
+    $state.go('welcome',{ statusCode: true });
+  }
+
 
 }])
 
