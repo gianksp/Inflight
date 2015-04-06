@@ -2,11 +2,11 @@
 
 <ion-content class="info" scrollbar-y="yes">
 
- <div class="row responsive-sm">
+<div class="row responsive-sm">
 
 
-    <div class="col">
-     <div>
+  <div class="col">
+   <div>
 
     <!-- NUMBER OF ENTRANCES -->
     <div style="margin-top:44px; float:left; width:33%;">
@@ -24,7 +24,7 @@
       </label>
     </div>
 
-        <!-- NUMBER OF ENTRANCES -->
+    <!-- NUMBER OF ENTRANCES -->
     <div style="margin-top:44px; float:left; width:33%;">
       <label class="item item-input item-select">
         <button class="input-label" pick-a-time="start">
@@ -33,62 +33,62 @@
       </label>
     </div>
 
-        <!-- NUMBER OF ENTRANCES -->
+    <!-- NUMBER OF ENTRANCES -->
     <div style="margin-top:44px; float:left; width:33%">
       <label class="item item-input item-select">
         <button class="input-label" pick-a-time="end">
           Return
         </button>
-      
+
       </label>
     </div>
 
-      </div>
+  </div>
 
 
 
 
-      <div class="map" id="map" style="height:250px; !important;" data-tap-disabled="true"></div>
+  <div class="map" id="map" style="height:250px; !important;" data-tap-disabled="true"></div>
+</div>
+
+<div class="col info" style="margin-left:15px;">
+  <div>
+
+    <div id="logo" class="row" style="background-color:transparent !important; margin-left:30px; width:350px; height:100px;">
+      <img src="img/cityhook.png"></img>
     </div>
 
-    <div class="col info" style="margin-left:15px;">
-      <div>
+    <div class="row">
 
-        <div id="logo" class="row" style="background-color:transparent !important; margin-left:30px; width:350px; height:100px;">
-          <img src="img/cityhook.png"></img>
+      <div class="col-33">
+        <div style="overflow:hidden;">
+          <input style="height:20px; width:30px; padding:10px;" type="radio" ng-model="step.route" value="red">
+          <img style="width:80%;" src="img/separator.png"/>
         </div>
-
-        <div class="row">
-
-          <div class="col-33">
-            <div style="overflow:hidden;">
-            <input style="height:20px; width:30px; padding:10px;" type="radio" ng-model="step.route" value="red">
-            <img style="width:80%;" src="img/separator.png"/>
-            </div>
-            <h5 class="light">SELECT ROUTES</h5>
-          </div>
-          
-          <div class="col-33">
-            <div style="overflow:hidden;">
-            <input style="height:20px; width:30px;" type="radio" ng-model="step.payment" value="red">
-            <img style="width:80%;" src="img/separator.png"/>
-            </div>
-            <h5 class="light">PAYMENT</h5>
-          </div>
-
-          <div class="col-33">
-            <div style="overflow:hidden;">
-            <input style="height:20px; width:30px;" type="radio" ng-model="step.ticketing" value="red">
-            </div>
-            <h5 class="light">TICKETING</h5>
-          </div>
-
-        </div>
+        <h5 class="light">SELECT ROUTES</h5>
       </div>
 
+      <div class="col-33">
+        <div style="overflow:hidden;">
+          <input style="height:20px; width:30px;" type="radio" ng-model="step.payment" value="red">
+          <img style="width:80%;" src="img/separator.png"/>
+        </div>
+        <h5 class="light">PAYMENT</h5>
+      </div>
 
-      <!-- MASTER -->
-<!--       <div>
+      <div class="col-33">
+        <div style="overflow:hidden;">
+          <input style="height:20px; width:30px;" type="radio" ng-model="step.ticketing" value="red">
+        </div>
+        <h5 class="light">TICKETING</h5>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- MASTER -->
+      <div ng-show="statusCode == null || statusCode == undefined || statusCode == ''">
       <h4 class="light">Quick selection:</h4>
       <div>
         <img src="img/location_white.png" style="height:20px;"></img><strong style="margin:10px; padding:10px;" class="light">Departing London Heathrow 10:30 a.m</strong>
@@ -146,35 +146,44 @@
         </div>
       </div>
 
-    </div> -->
+    </div>
     <!-- MASTER -->
 
 
 
-    <div>
-      
+    <div ng-show="statusCode != null && statusCode != undefined && statusCode != ''">
+
       <h4 class="light">Ticker Confirmation:</h4>
 
 
       <div class="list card">
-            <div class="row">
-              <div class="col-15 overflow:hidden;">
-                <img src="img/heathrow_express.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
-              </div>
-              <div class="col-66" style="padding-left:10px;">
-                <h5>Heathrow Express <small>by London Trains</small></h5>
-                <h5 style="margin-top:10px;">75€ Per Person - 25 min.<br>Mobile Ticketing</h5>
-              </div>
+        <div class="row">
+          <div class="col-15 overflow:hidden;">
+            <img src="img/heathrow_express.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+          </div>
+          <div class="col-66" style="padding-left:10px;">
+            <h4>Heathrow Express</h4>
+            <a>by London Trains</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:8px;" class="red-txt">Order Confirmation:</h4>
+          <a>45 Mins Journey Time<br>
+            From: London Heathrow<br>
+            To: Victoria Station<br>
+            2 Passengers<br>
+            Price 160€</a>
+          </div>
+          <div class="aligned-center">
+            <img src="img/qr.png" style="width:150px; height:150px;"></img>
           </div>
 
-
+        </div>
       </div>
 
-
-    </div>
-
-
-
+      <div class="aligned-center" ng-show="statusCode != null && statusCode != undefined && statusCode != ''">
+        <img src="img/passbook.png" style="height:50px; width:auto; border-radius:8px;"></img>
+      </div>
 
     </div>
 
