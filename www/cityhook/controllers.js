@@ -39,30 +39,42 @@ angular.module('inflightApp.cityhook')
 .controller('WelcomeController', ['$scope','$compile','$http','$state','$ionicModal','$ionicPopup','Event','City',
   function($scope,$compile,$http,$state,$ionicModal,$ionicPopup, Event, City) {
 
-  $scope.mapCreated = function(map) {
+ $scope.initialize = function() {
+    var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
+    
+    var mapOptions = {
+      center: myLatlng,
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"),
+        mapOptions);
+
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+
     $scope.map = map;
-  };
+  }
 
-  $scope.centerOnMe = function () {
-    console.log("Centering");
-    if (!$scope.map) {
-      return;
-    }
 
-    $scope.loading = $ionicLoading.show({
-      content: 'Getting current location...',
-      showBackdrop: false
-    });
+  $scope.alert = function(){
+  alert('alerted!');
+};
+  //google.maps.event.addDomListener(window, 'load', initialize);
 
-    navigator.geolocation.getCurrentPosition(function (pos) {
-      console.log('Got pos', pos);
-      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-      $scope.loading.hide();
-    }, function (error) {
-      alert('Unable to get location: ' + error.message);
-    });
-  };
 
+
+  $scope.customState = function(){
+    $state.go('route');
+  }
 }])
 
 /**
@@ -74,15 +86,23 @@ angular.module('inflightApp.cityhook')
  * @param  {[type]} Event) {}]         [description]
  * @return {[type]}        [description]
  */
-.controller('EventDetailController', ['$scope','$http','$state','$stateParams','Event',
+.controller('RouteController', ['$scope','$http','$state','$stateParams','Event',
   function($scope,$http,$state,$stateParams, Event) {
 
-    $scope.itemIndex = $stateParams.event_index;
-    Event.findAll().then(function (events) {
-      $scope.events = events;
-      $scope.selectedEvent = events[$scope.itemIndex];
-      console.log($scope.selectedEvent);
-    });
+    $scope.routeType = $stateParams.type;
+    console.log($scope.routeType);
+
+    $scope.colours = [{
+    name: "Red",
+    hex: "#F21B1B"
+  }, {
+    name: "Blue",
+    hex: "#1B66F2"
+  }, {
+    name: "Green",
+    hex: "#07BA16"
+  }];
+  $scope.colour = "";
 
 }])
 
@@ -323,11 +343,6 @@ angular.module('inflightApp.cityhook')
   }
 })
 
-
-
-
-
-
 .directive('map', function() {
   return {
     restrict: 'E',
@@ -357,6 +372,50 @@ angular.module('inflightApp.cityhook')
       } else {
         google.maps.event.addDomListener(window, 'load', initialize);
       }
+    }
+  }
+})
+
+
+app.directive("dropdown", function($rootScope) {
+  return {
+    restrict: "E",
+    templateUrl: "templates/dropdown.html",
+    scope: {
+      placeholder: "@",
+      list: "=",
+      selected: "=",
+      property: "@"
+    },
+    link: function(scope) {
+      scope.listVisible = false;
+      scope.isPlaceholder = true;
+
+      scope.select = function(item) {
+        scope.isPlaceholder = false;
+        scope.selected = item;
+      };
+
+      scope.isSelected = function(item) {
+        return item[scope.property] === scope.selected[scope.property];
+      };
+
+      scope.show = function() {
+        scope.listVisible = true;
+      };
+
+      $rootScope.$on("documentClicked", function(inner, target) {
+        console.log($(target[0]).is(".dropdown-display.clicked") || $(target[0]).parents(".dropdown-display.clicked").length > 0);
+        if (!$(target[0]).is(".dropdown-display.clicked") && !$(target[0]).parents(".dropdown-display.clicked").length > 0)
+          scope.$apply(function() {
+            scope.listVisible = false;
+          });
+      });
+
+      scope.$watch("selected", function(value) {
+        scope.isPlaceholder = scope.selected[scope.property] === undefined;
+        scope.display = scope.selected[scope.property];
+      });
     }
   }
 });

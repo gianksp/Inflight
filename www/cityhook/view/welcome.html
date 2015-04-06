@@ -1,20 +1,73 @@
-<ion-view title="Cityhook" ng-controller="WelcomeController" class="dark">
+<ion-view title="Cityhook" ng-controller="WelcomeController" ng-init="initialize()" class="dark">
 
-<ion-content scroll="false">
-      <map on-create="mapCreated(map)"></map>
-    </ion-content>
-<!-- <ion-content class="info" scrollbar-y="yes">
-
+<ion-content class="info" scrollbar-y="yes">
 
  <div class="row responsive-sm">
 
-    <div class="col map" id="map" style="height:250px;" data-tap-disabled="true"></div>
+
+    <div class="col">
+
+
+
+
+
+
+
+      <div>
+
+
+
+
+        <!-- NUMBER OF ENTRANCES -->
+    <div style="margin-top:44px; float:left; width:33%;">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Search
+        </div>
+        <select>
+          <option>Paddington</option>
+          <option>Victoria Station</option>
+          <option>West End</option>
+          <option>Westminster</option>
+          <option>Chelsea</option>
+        </select>
+      </label>
+    </div>
+
+        <!-- NUMBER OF ENTRANCES -->
+    <div style="margin-top:44px; float:left; width:33%;">
+      <label class="item item-input item-select">
+        <button class="input-label" pick-a-time="start">
+          Depart
+        </button>
+      </label>
+    </div>
+
+        <!-- NUMBER OF ENTRANCES -->
+    <div style="margin-top:44px; float:left; width:33%">
+      <label class="item item-input item-select">
+        <button class="input-label" pick-a-time="end">
+          Return
+        </button>
+      
+      </label>
+    </div>
+
+      </div>
+
+
+
+
+      <div class="map" id="map" style="height:250px; !important;" data-tap-disabled="true"></div>
+    </div>
 
     <div class="col info" style="margin-left:15px;">
       <div>
+
         <div id="logo" class="row" style="background-color:transparent !important; margin-left:30px; width:350px; height:100px;">
           <img src="img/cityhook.png"></img>
         </div>
+
         <div class="row">
 
           <div class="col-33">
@@ -48,44 +101,49 @@
         <img src="img/location_white.png" style="height:20px;"></img><strong style="margin:10px; padding:10px;" class="light">Departing London Heathrow 10:30 a.m</strong>
       </div>
 
-      <div style="margin: 20px 10px 5px 10px;">
-        <div class="row" style="width:100%; height: 80px; background:white;">
-          <div class="col-15 overflow:hidden;">
-            <img src="img/shuttle_premium.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
-          </div>
-          <div class="col-66" style="padding-left:10px;">
-            <h5>Premium Shuttle <small>by Concierge Companion</small></h5>
-            <h5 style="margin-top:10px;">80€ Per Person - 45 min.<br>Mobile Ticketing</h5>
-          </div>
-        </div>
-      </div>
+      <ion-list>
 
-      <div style="margin: 20px 10px 5px 10px;">
-        <div class="row" style="width:100%; height: 80px; background:white;">
-          <div class="col-15 overflow:hidden;">
-            <img src="img/shuttle_standard.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+        <ion-item href="#/cityhook/route/premium" style="margin-top:10px;">
+            <div class="row">
+              <div class="col-15 overflow:hidden;">
+                <img src="img/shuttle_premium.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+              </div>
+              <div class="col-66" style="padding-left:10px;">
+                <h5>Premium Shuttle <small>by Concierge Companion</small></h5>
+                <h5 style="margin-top:10px;">80€ Per Person - 45 min.<br>Mobile Ticketing</h5>
+              </div>
           </div>
-          <div class="col-66" style="padding-left:10px;">
-            <h5>Standard Shuttle <small>by Silver Shuttle</small></h5>
-            <h5 style="margin-top:10px;">45€ Per Person - 55 min.<br>Mobile Ticketing</h5>
-          </div>
-        </div>
-      </div>
+        </ion-item>
 
-      <div style="margin: 20px 10px 5px 10px;">
-        <div class="row" style="width:100%; height: 80px; background:white;">
-          <div class="col-15 overflow:hidden;">
-            <img src="img/heathrow_express.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+        <ion-item href="#/cityhook/route/standard" style="margin-top:10px;">
+            <div class="row">
+              <div class="col-15 overflow:hidden;">
+                <img src="img/shuttle_standard.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+              </div>
+              <div class="col-66" style="padding-left:10px;">
+                <h5>Standard Shuttle <small>by Silver Shuttle</small></h5>
+                <h5 style="margin-top:10px;">45€ Per Person - 55 min.<br>Mobile Ticketing</h5>
+              </div>
           </div>
-          <div class="col-66" style="padding-left:10px;">
-            <h5>Heathrow Express <small>by London Trains</small></h5>
-            <h5 style="margin-top:10px;">75€ Per Person - 25 min.<br>Mobile Ticketing</h5>
-          </div>
-        </div>
-      </div>
+        </ion-item>
 
-      <div style="margin: 20px 10px 5px 10px;">
-       <button style="width:100%; height:40px;" >Custom Journey</button>
+        <ion-item href="#/cityhook/route/express" style="margin-top:10px;">
+            <div class="row">
+              <div class="col-15 overflow:hidden;">
+                <img src="img/heathrow_express.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+              </div>
+              <div class="col-66" style="padding-left:10px;">
+                <h5>Heathrow Express <small>by London Trains</small></h5>
+                <h5 style="margin-top:10px;">75€ Per Person - 25 min.<br>Mobile Ticketing</h5>
+              </div>
+          </div>
+        </ion-item>
+
+      </ion-list>
+
+
+      <div style="margin-top: 20px;" >
+       <button style="width:100%; height:40px;" ng-click="customState()" >Custom Journey</button>
   
       </div>
 
@@ -99,7 +157,6 @@
 
   </div>
 
-
-</ion-content> -->
+</ion-content> 
 
 </ion-view>

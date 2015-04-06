@@ -54,6 +54,10 @@ angular.module('starter', ['ionic','inflightApp.ticket','inflightApp.cityhook'])
       url: "/cityhook",
       templateUrl: "cityhook/view/welcome.html"
     })
+    .state('route', {
+      url: "/cityhook/route/:type",
+      templateUrl: "cityhook/view/route_selection.html"
+    })
 
     $urlRouterProvider.otherwise("/cityhook");
 });
