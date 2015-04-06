@@ -2,22 +2,51 @@
 
 <ion-content class="info" scrollbar-y="yes">
 
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h1 class="title">My Popover Title</h1>
+    </ion-header-bar>
+    <ion-content>
+      Hello!
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+
+
 <div class="list card">
 
-  <div class="item aligned-center light header">
-    <h2>TRANSIT ROUTE SELECTION</h2>
+  <div class="item header dark-header round">
+    <h2 class="aligned-center light">Transit Route Selection</h2>
   </div>
 
-Test
-<dropdown placeholder="Colour..." list="colours" selected="colour" property="name"></dropdown>
+  <div style="margin:15px;">
+
+  From:
+  <button class="round btn aligned-center button light dark-header" style="width:100%; height:100%;" ng-click="openPopover($event)"><a style="float:left;">LONDON HEATHROW (LHR)</a>  <i style="float:right;"class="icon ion-chevron-down"></i></button>
+  To:
+  <button class="round btn aligned-center button light dark-header" style="width:100%; height:100%;" ng-click="openPopover($event)"><a style="float:left;">VICTORIA STATION</a>  <i style="float:right;"class="icon ion-chevron-down"></i></button>
+  Date:
+  <button class="round btn aligned-center button light dark-header" style="width:100%; height:100%;" pick-a-date="date"><a style="float:left;">11 NOVEMBER 2015</a>  <i style="float:right;"class="icon ion-chevron-down"></i>
+  </button>
+
+  <div style="height:400px; margin:30px 100px 30px 100px;">
+
+     <div class="map" id="map" style="with:100%; height:100%;" data-tap-disabled="true"></div>
 
 
-  <div class="item tabs tabs-secondary tabs-icon-left">
+  </div>
+
+  <button class="round btn aligned-center button red-btn light" style="width:100%; height:100%;"><strong>SEARCH ROUTES</strong><i style="margin-left:10px;"class="icon ion-chevron-right"></i></button>
 
   </div>
 
 </div>
 
+
+
 </ion-content> 
+
 
 </ion-view>

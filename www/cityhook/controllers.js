@@ -86,23 +86,70 @@ angular.module('inflightApp.cityhook')
  * @param  {[type]} Event) {}]         [description]
  * @return {[type]}        [description]
  */
-.controller('RouteController', ['$scope','$http','$state','$stateParams','Event',
-  function($scope,$http,$state,$stateParams, Event) {
+.controller('RouteController', ['$scope','$http','$state','$stateParams','Event','$ionicPopover',
+  function($scope,$http,$state,$stateParams, Event,$ionicPopover) {
 
+ $scope.initialize = function() {
+    var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
+    
+    var mapOptions = {
+      center: myLatlng,
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"),
+        mapOptions);
+
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+
+    $scope.map = map;
+  }
+  
     $scope.routeType = $stateParams.type;
-    console.log($scope.routeType);
 
-    $scope.colours = [{
-    name: "Red",
-    hex: "#F21B1B"
-  }, {
-    name: "Blue",
-    hex: "#1B66F2"
-  }, {
-    name: "Green",
-    hex: "#07BA16"
-  }];
-  $scope.colour = "";
+  // .fromTemplate() method
+  var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
+
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope
+  });
+
+  // .fromTemplateUrl() method
+  $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+  // Execute action on hide popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
+
 
 }])
 
@@ -377,7 +424,7 @@ angular.module('inflightApp.cityhook')
 })
 
 
-app.directive("dropdown", function($rootScope) {
+.directive("dropdown", function($rootScope) {
   return {
     restrict: "E",
     templateUrl: "templates/dropdown.html",
