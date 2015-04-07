@@ -203,3 +203,12 @@ dropdown {
 .round {
   border-radius: 6px;
 }
+
+#search input[type="text"]:focus {
+    outline: none;
+}
+
+.big {
+  height:250px;
+  width:370px;
+}

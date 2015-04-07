@@ -75,6 +75,7 @@ angular.module('inflightApp.cityhook',['angular-datepicker','ti-segmented-contro
      * @type {Array}
      */
     var items = [
+      { id:"11",  name:"London", country:"UK" },
       { id:"1",  name:"Berlin", country:"Germany" },
       { id:"2",  name:"Munich", country:"Germany" },
       { id:"3",  name:"Frankfurt", country:"Germany" },
@@ -85,7 +86,6 @@ angular.module('inflightApp.cityhook',['angular-datepicker','ti-segmented-contro
       { id:"8",  name:"Heidelberg", country:"Germany" },
       { id:"9",  name:"Weimar", country:"Germany" },
       { id:"10",  name:"Düsseldorf", country:"Germany" },
-      { id:"11",  name:"London", country:"UK" },
       { id:"12",  name:"Manchester", country:"UK" },
       { id:"13",  name:"Liverpool", country:"UK" },
       { id:"14",  name:"Oxford", country:"UK" },

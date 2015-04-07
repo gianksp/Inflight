@@ -51,14 +51,17 @@
       <ion-nav-buttons side="right">
       </ion-nav-buttons>
        <ion-nav-buttons side="right">
-        <button class="button" ng-click="switchModule()">
-          Switch Module
+        <button class="button" style="margin-right:10px;" ng-click="switchLayout()">
+          {{layoutTitle}}
+        </button>
+        <button class="button" style="margin-right:10px;" ng-click="switchModule()">
+          {{moduleTitle}}
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
 
     <!-- CONTENT -->
-    <ion-nav-view></ion-nav-view>
+    <ion-nav-view data-tap-disabled="true"></ion-nav-view>
 
   </body>
 </html>

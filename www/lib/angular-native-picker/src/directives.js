@@ -59,11 +59,7 @@ angular.module('angular-datepicker', [])
                     }, 500);
                 }
 
-	            element.pickadate(angular.extend(options, {
-	                onSet: onSet,
-	                onClose: onClose,
-					container: document.body
-	            }));
+element.pickadate(angular.extend(options, { onStart : function(){ this.$root.attr('data-tap-disabled',true); }, onSet: onSet, onClose: onClose, container: document.body }));
 
 				setTimeout(function() {
 					if (scope.pickADate) {

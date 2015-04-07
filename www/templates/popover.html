@@ -1,8 +1,12 @@
   <ion-popover-view>
-    <ion-header-bar>
-      <h1 class="title">My Popover Title</h1>
+    <ion-header-bar ng-show="popoverTitle != null">
+      <h1 class="title">{{popoverTitle}}</h1>
     </ion-header-bar>
     <ion-content>
-      Hello! yay
+      <ion-list>
+        <ion-item ng-repeat="item in popoverContent" ng-click="selectItem(item)">
+          {{item.name}}
+        </ion-item>
+      </ion-list
     </ion-content>
   </ion-popover-view>

@@ -18,22 +18,38 @@ angular.module('inflightApp.cityhook')
  * @param  {Array}  Event) {                   $scope.events [description]
  * @return {[type]}        [description]
  */
-.controller('NavController', ['$scope','$http','$state','Event',
-  function($scope,$http,$state,Event) {
+.controller('NavController', ['$scope','$http','$state','$rootScope',
+  function($scope,$http,$state,$rootScope) {
 
+    //Default layout tablet
+    $rootScope.layoutTablet = true;
+    $scope.tablet = $rootScope.layoutTablet;
+
+    $scope.layoutTitle = "Load Mobile";
+    $scope.moduleTitle = "Load Cityhook";
+
+    /**
+     * Ticketmaster - Cityhook
+     * @return {[type]} [description]
+     */
     $scope.switchModule = function() {
-      console.log($state.current);
       if ($state.current.name == 'list') {
         $state.go('welcome');
+        $scope.moduleTitle = "Load Ticketmaster";
       } else if ($state.current.name == 'welcome') {
         $state.go('list');
+        $scope.moduleTitle = "Load Cityhook";
       }
     }
 
-    $scope.displayBackButton = function() {
-      var show = $state.current.name == 'detail';
-      console.log(show);
-      return show;
+    /**
+     * Switch between tablet - mobile
+     * @return {[type]} [description]
+     */
+    $scope.switchLayout = function() {
+      $rootScope.layoutTablet = !$rootScope.layoutTablet;
+      $scope.tablet = $rootScope.layoutTablet;
+      $scope.layoutTitle = $scope.tablet ? "Load Mobile" : "Load Tablet";
     }
 
 }])
@@ -45,8 +61,20 @@ angular.module('inflightApp.cityhook')
  * @param  {Array}  Event) {                   $scope.events [description]
  * @return {[type]}        [description]
  */
-.controller('WelcomeController', ['$scope','$compile','$http','$state','$ionicModal','$ionicPopup','Event','City','$state','$stateParams',
-  function($scope,$compile,$http,$state,$ionicModal,$ionicPopup, Event, City,$state,$stateParams) {
+.controller('WelcomeController', ['$scope','$compile','$http','$state','$ionicModal','$ionicPopup','Event','City','$state','$stateParams','$ionicPopover',
+  function($scope,$compile,$http,$state,$ionicModal,$ionicPopup, Event, City,$state,$stateParams,$ionicPopover) {
+
+    //Popover content info
+    $scope.popoverTitle = null;
+    $scope.currentSelection = null;
+    $scope.popoverContent = [
+      { id : 1, name: "Paddington"},
+      { id : 1, name: "Victoria Station"},
+      { id : 1, name: "West End"},
+      { id : 1, name: "Westminster"},
+      { id : 1, name: "Chelsea"}
+    ];
+
 
 $scope.statusCode = $stateParams.statusCode;
 console.log($scope.statusCode);
@@ -83,10 +111,51 @@ console.log($scope.statusCode);
   //google.maps.event.addDomListener(window, 'load', initialize);
 
 
+  $scope.selectItem = function(item) {
+    $scope.currentSelection = item;
+    $scope.closePopover();
+  }
 
   $scope.customState = function(){
     $state.go('route');
   }
+
+
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope
+  });
+
+  // .fromTemplateUrl() method
+  $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+
+  $scope.openPopover = function($event) {
+    console.log($scope.popover);
+    $scope.popover.show($event);
+  };
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+  // Execute action on hide popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
+
+
+
+
 }])
 
 /**
