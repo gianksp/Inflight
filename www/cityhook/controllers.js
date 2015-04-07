@@ -21,6 +21,15 @@ angular.module('inflightApp.cityhook')
 .controller('NavController', ['$scope','$http','$state','Event',
   function($scope,$http,$state,Event) {
 
+    $scope.switchModule = function() {
+      console.log($state.current);
+      if ($state.current.name == 'list') {
+        $state.go('welcome');
+      } else if ($state.current.name == 'welcome') {
+        $state.go('list');
+      }
+    }
+
     $scope.displayBackButton = function() {
       var show = $state.current.name == 'detail';
       console.log(show);
