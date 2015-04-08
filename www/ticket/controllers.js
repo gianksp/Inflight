@@ -61,8 +61,29 @@ angular.module('inflightApp.ticket')
  * @param  {Array}  Event) {                   $scope.events [description]
  * @return {[type]}        [description]
  */
-.controller('EventListController', ['$rootScope','$scope','$http','$state','$ionicModal','$ionicPopup','Event','City','$ionicPopover',
-  function($rootScope, $scope,$http,$state,$ionicModal,$ionicPopup, Event, City,$ionicPopover) {
+.controller('EventListController', ['$rootScope','$scope','$http','$state','$ionicModal','$ionicPopup','Event','City','$ionicPopover','$filter',
+  function($rootScope, $scope,$http,$state,$ionicModal,$ionicPopup, Event, City,$ionicPopover,$filter) {
+
+    $scope.allDates = [];
+
+    // $scope.generateDates = function () {
+    //   for (var i=0 ; i< 30 ; i++) {
+    //     var day = new Date(new Date().getTime() + i*(24 * 60 * 60 * 1000));
+    //     var date = new Date(day.setHours(0,0,0,0));
+            
+    //     if ($scope.filterDate == null || date.getTime() >= $scope.filterDate) {
+    //       if (i==0) {
+    //         $scope.allDates.push ({ date:date, label:"Today"});
+    //       } else if (i==1) {
+    //         $scope.allDates.push ({ date:date, label:"Tomorrow"});
+    //       } else {
+    //         $scope.allDates.push ({ date:date, label:date.getDate()+"/"+date.getMonth()});
+    //       }
+    //     }
+    //   }
+    // }
+
+    //$scope.generateDates();
 
     //Initialise 
     $scope.tablet = $rootScope.layoutTablet;
@@ -71,6 +92,7 @@ angular.module('inflightApp.ticket')
     $scope.viewModel = {};
     $scope.selectedLocation = City.defaultCity();
     $scope.filterFavorite = false;
+    $scope.filterDate = null;
 
     $scope.popoverContent = [
       { id : 1, name: "London"},
@@ -78,6 +100,16 @@ angular.module('inflightApp.ticket')
     ];
 
     $scope.newUser = {};
+
+    // somewhere in your controller
+    $scope.options = {
+      format: 'yyyy-mm-dd', // ISO formatted date
+      onClose: function(e) {
+        // do something when the picker closes   
+        console.log("this is it");
+        console.log($scope.filterDate);
+      }
+    }
 
     $scope.selectItem = function(item) {
       $scope.selectedLocation = item;
@@ -98,7 +130,8 @@ angular.module('inflightApp.ticket')
 
     //Watch the search query
     $scope.applySearchFilter = function() {
-      Event.findAll($scope.viewModel.search, $scope.selectedLocation, $scope.filterFavorite ).then(function(events){
+      Event.findAll($scope.viewModel.search, $scope.selectedLocation, $scope.filterFavorite, $scope.filterDate ).then(function(events){
+          
         //Set events to display
         $scope.events = events;
       });
@@ -196,7 +229,109 @@ angular.module('inflightApp.ticket')
     console.log(newValue+" "+oldValue);
   });
 
+
+
+
+
+
+
+
+
+
+  $scope.contacts = [
+    { name: 'Gordon Freeman' },
+    { name: 'Barney Calhoun' },
+    { name: 'Lamarr the Headcrab' },
+  ];
+  /*$ionicModal.fromTemplateUrl('modal.html', function(modal) {
+    $scope.modal = modal;
+  }, {
+    animation: 'slide-in-up',
+    focusFirstInput: true
+  });*/
+    
+    
+     $scope.newUser = {};
+
+  $scope.$watch('newUser.birthDate', function(unformattedDate){
+    $scope.newUser.formattedBirthDate = $filter('date')(unformattedDate, 'dd/MM/yyyy HH:mm');
+  });
+
+  $scope.createContact = function() {
+    console.log('Create Contact', $scope.newUser);
+    $scope.modal.hide();
+  };
+    
+  $scope.openDatePicker = function() {
+    $scope.tmp = {};
+    $scope.tmp.newDate = $scope.newUser.birthDate;
+    
+    var birthDatePopup = $ionicPopup.show({
+     template: '<datetimepicker data-datetimepicker-config="{ startView:\'day\', minView:\'day\' }" ng-model="tmp.newDate"></datetimepicker>',
+     title: "Select",
+     scope: $scope,
+     buttons: [
+       { text: 'Cancel' },
+       {
+         text: '<b>Filter</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+           $scope.filterDate = $scope.tmp.newDate;
+           console.log($scope.filterDate);
+           $scope.applySearchFilter();
+         }
+       }
+     ]
+    });
+  }
+    
+
+
+
+
 }])
+
+
+
+
+
+
+.controller('ModalCtrl', function($scope, $ionicPopup, $filter) {
+  
+  $scope.newUser = {};
+
+  $scope.$watch('newUser.birthDate', function(unformattedDate){
+    $scope.newUser.formattedBirthDate = $filter('date')(unformattedDate, 'dd/MM/yyyy HH:mm');
+  });
+
+  $scope.createContact = function() {
+    console.log('Create Contact', $scope.newUser);
+    $scope.modal.hide();
+  };
+    
+  $scope.openDatePicker = function() {
+    $scope.tmp = {};
+    $scope.tmp.newDate = $scope.newUser.birthDate;
+    
+    var birthDatePopup = $ionicPopup.show({
+     template: '<datetimepicker ng-model="tmp.newDate"></datetimepicker>',
+     title: "Birth date",
+     scope: $scope,
+     buttons: [
+       { text: 'Cancel' },
+       {
+         text: '<b>Save</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+           $scope.newUser.birthDate = $scope.tmp.newDate;
+         }
+       }
+     ]
+    });
+  }
+})
+
+
 
 /**
  * Event Detail Controller.

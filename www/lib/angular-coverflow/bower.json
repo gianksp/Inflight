@@ -1,0 +1,13 @@
+{
+  "name": "angular-coverflow",
+  "description": "Angular coverflow directive using requestAnimationFrame technique for smooth rendering",
+  "version": "0.0.2",
+  "main": "coverflow.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/southdesign/angular-coverflow"
+  },
+  "author": "fankhauser",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

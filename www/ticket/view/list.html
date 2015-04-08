@@ -1,17 +1,19 @@
 <ion-view title="Events" ng-controller="EventListController" class="dark">
 
 <!-- MOBILE VERSION -->
-<ion-content overflow-scroll="true" class="black" ng-show="!layoutTablet">
+<ion-content overflow-scroll="true" class="black" scrollbar-y="yes">
+
+<div class="black" ng-show="!layoutTablet">
 
   <!-- LOGO -->
   <div id="logo" class="row" style="background-color:black !important; margin:0 auto;">
     <img style="margin:0 auto; width:250px; height:auto;" src="img/logo.png"></img>
   </div>
+
   <!-- LOCATION -->
-  <div class="parent black aligned-center " style="margin-top:-30px;">
+  <div class="parent black aligned-center ">
     <span class="small light" style="font-size:16px;">Location:</span>
     <span class="btn big red-txt" style="font-size:20px; font-weight:bold;">{{selectedLocation.name}}</span>
-    <span><button pick-a-date="date" ng-model="date" class="ion-calendar"></button> </span>
   </div>
   <!-- SEARCH -->
   <div id="search-box" class="bar bar-header item-input-inset black" >
@@ -20,9 +22,9 @@
       <input class="light" type="text" placeholder="Location" ng-model="selectedLocation.name" ng-click="openPopover($event)">
       <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
     </div>
+    <span><button ng-click="openDatePicker()" class="ion-calendar"></button> </span>
     <!-- <button pick-a-date="date" class="ion-calendar"></button> -->
   </div>
-
 
   <div id="search-box" class="bar bar-header item-input-inset black">
     <div class="item-input-wrapper">
@@ -41,32 +43,55 @@
       <div class="aligned-center light">{{event.name}}</div>
     </div>
   </ion-scroll>
-  </div>
+</div>
 
-  <ion-list>
-  <ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events track by $index" ui-sref="detail({event_index: $index})">
-  <div class="row">
-    <div class="list-item" back-img="{{event.image_url}}"></div>
-    <div class="col">
-      <div class="title">{{event.name}}</div>
-      <div class="text">{{event.venue}}</div>
-      <div class="text">{{event.time}}</div>
+<ion-list>
+<ion-item auto-list-divider auto-list-divider-value="{{event.group}}" class="item-avatar" ng-repeat="event in events track by $index" ui-sref="detail({event_index: $index})">
+<!-- <ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events track by $index" ui-sref="detail({event_index: $index})"> -->
+<div class="row">
+  <div class="list-item" back-img="{{event.image_url}}"></div>
+  <div class="col">
+    <div class="title">{{event.name}}</div>
+    <div class="text">{{event.venue}}</div>
+    <div class="text">{{event.time}}</div>
+  </div>
+  <i class="icon ion-chevron-right icon-accessory" style="margin-top:25px;"></i>
+</div>
+</ion-item>
+</ion-list>
+
+</div>
+
+<div class="black" ng-show="layoutTablet">
+
+  <!-- LOGO -->
+  <div id="logo" class="row" style="background-color:black !important; margin:0 auto;">
+    <img style="margin:0 auto; width:250px; height:auto;" src="img/logo.png"></img>
+  </div>
+  <!-- LOCATION -->
+  <div class="parent black aligned-center " style="margin-top:-30px;">
+    <span class="small light" style="font-size:16px;">Location:</span>
+    <span class="btn big red-txt" style="font-size:20px; font-weight:bold;">{{selectedLocation.name}}</span>
+  </div>
+  <!-- SEARCH -->
+  <div id="search-box" class="bar bar-header item-input-inset black" >
+    <div class="item-input-wrapper dark">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input class="light" type="text" placeholder="Location" ng-model="selectedLocation.name" ng-click="openPopover($event)">
+      <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
     </div>
-    <i class="icon ion-chevron-right icon-accessory" style="margin-top:25px;"></i>
+    <span><button ng-click="openDatePicker()" class="ion-calendar"></button> </span>
+    <!-- <button pick-a-date="date" class="ion-calendar"></button> -->
   </div>
-  </ion-item>
-  </ion-list>
-</ion-content>
 
+  <div id="search-box" class="bar bar-header item-input-inset black">
+    <div class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="search" placeholder="Arstist/Team/Show or Venue" ng-model="viewModel.search" ng-change="applySearchFilter()">
+      <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
+    </div>
+  </div>
 
-
-
-
-
-
-<!-- TABLET VERSION -->
-<!-- TABLET VERSION -->
-<ion-content overflow-scroll="true" class="black" ng-show="layoutTablet">
 
   <!-- FEATURED EVENTS -->
   <div ng-show="viewModel.search == null || viewModel.search.length == 0">
@@ -77,31 +102,32 @@
       <div class="aligned-center light">{{event.name}}</div>
     </div>
   </ion-scroll>
-  </div>
+</div>
 
-  <!-- ALL EVENTS -->
-  <ion-list class="dark">
-    <ion-item class="dark" 
-              ng-repeat="eventType in ['Trending Tours','Country Tours','House of Blues presents Ones to Watch','Spring for tickets: 10 can\'t-miss club tours!']" 
-              ui-sref="detail({event_index: $index})">
-              
-    <div style="height:50px; font-weight:bold;">
-      <h2>{{eventType}}</h2>
-    </div>
-    <ion-scroll direction="x" class="wide-as-needed dark" style="margin:-20px -50px -20px -50px; height:270px;">
-    <div ui-sref="detail({event_index: $index})" class="featured-item dark" ng-repeat="event in events track by $index">
-      <div class="featured-item" back-img="{{event.image_url}}"></div>
-      <div class="aligned-center light">{{event.name}}</div>
-      <div class="aligned-center light" style="margin-top:10px;"><small>{{event.venue}}</small></div>
-    </div>
-  </ion-scroll>
+<!-- ALL EVENTS -->
+<ion-list class="dark">
+<ion-item class="dark" 
+ng-repeat="eventType in allDates" 
+ui-sref="detail({event_index: $index})">
 
-    </ion-item>
-  </ion-list>
+<div style="height:50px; font-weight:bold;">
+  <h2>{{eventType.label}}</h2>
+</div>
+<ion-scroll direction="x" class="wide-as-needed dark" style="margin:-20px -50px -20px -50px; height:270px;">
+<div ui-sref="detail({event_index: $index})" class="featured-item dark" ng-repeat="event in events track by $index">
+  <div class="featured-item" back-img="{{event.image_url}}"></div>
+  <div class="aligned-center light">{{event.name}}</div>
+  <div class="aligned-center red-txt" style="margin-top:10px;"><small>{{event.time}}</small></div>
+  <div class="aligned-center light" style="margin-top:2px;"><small>{{event.venue}}</small></div>
+</div>
+</ion-scroll>
 
+</ion-item>
+</ion-list>
+
+</div>
 
 </ion-content>
-
 
 
 
