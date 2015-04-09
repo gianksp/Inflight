@@ -1,4 +1,4 @@
-<ion-view title="Event" ng-controller="EventArtistController" class="dark">
+<ion-view title="Event" ng-controller="EventVenueController" class="dark">
 
   <!-- DETAIL CONTENT -->
   <ion-content>
@@ -9,14 +9,13 @@
         </div>
         <div class="col-50 separator">
           <h4 class="light">{{selectedEvent.name}}</h4>
-          <h5 class="light">{{selectedEvent.name}}</h5>
-          <h5 class="light">{{selectedEvent.name}}</h5>
+          <h5 class="light">{{selectedEvent.description}}</h5>
         </div>
       </div>
 
 	<div class="card">
 	  <div class="item item-text-wrap">
-	    This is a basic Card which contains an item that has wrapping text.
+	    {{selectedEvent.artist}}
 	  </div>
 	</div>
   </ion-content>

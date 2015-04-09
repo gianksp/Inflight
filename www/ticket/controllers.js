@@ -348,6 +348,7 @@ angular.module('inflightApp.ticket')
     $scope.itemIndex = $stateParams.event_index;
     Event.findAll().then(function (events) {
       //$scope.events = events;
+      console.log(events);
       console.log("----");
       console.log($scope.itemIndex);
       for (e in events) {
@@ -465,6 +466,7 @@ angular.module('inflightApp.ticket')
       for (e in events) {
         console.log(events[e].id);
         if (events[e].id == $scope.itemIndex) {
+          console.log(events[e]);
           $scope.selectedEvent = events[e];
         }
       }
