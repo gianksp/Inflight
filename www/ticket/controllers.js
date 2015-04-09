@@ -22,7 +22,7 @@ angular.module('inflightApp.ticket')
   function($scope,$http,$state,$rootScope) {
 
     //Default layout tablet
-    $rootScope.layoutTablet = true;
+    $rootScope.layoutTablet = false;
     $scope.tablet = $rootScope.layoutTablet;
 
     $scope.layoutTitle = "Load Mobile";
@@ -66,24 +66,24 @@ angular.module('inflightApp.ticket')
 
     $scope.allDates = [];
 
-    // $scope.generateDates = function () {
-    //   for (var i=0 ; i< 30 ; i++) {
-    //     var day = new Date(new Date().getTime() + i*(24 * 60 * 60 * 1000));
-    //     var date = new Date(day.setHours(0,0,0,0));
+    $scope.generateDates = function () {
+      for (var i=0 ; i< 10 ; i++) {
+        var day = new Date(new Date().getTime() + i*(24 * 60 * 60 * 1000));
+        var date = new Date(day.setHours(0,0,0,0));
             
-    //     if ($scope.filterDate == null || date.getTime() >= $scope.filterDate) {
-    //       if (i==0) {
-    //         $scope.allDates.push ({ date:date, label:"Today"});
-    //       } else if (i==1) {
-    //         $scope.allDates.push ({ date:date, label:"Tomorrow"});
-    //       } else {
-    //         $scope.allDates.push ({ date:date, label:date.getDate()+"/"+date.getMonth()});
-    //       }
-    //     }
-    //   }
-    // }
+        if ($scope.filterDate == null || date.getTime() >= $scope.filterDate) {
+          if (i==0) {
+            $scope.allDates.push ({ date:date, label:"Today"});
+          } else if (i==1) {
+            $scope.allDates.push ({ date:date, label:"Tomorrow"});
+          } else {
+            $scope.allDates.push ({ date:date, label:date.getDate()+"/"+date.getMonth()});
+          }
+        }
+      }
+    }
 
-    //$scope.generateDates();
+    $scope.generateDates();
 
     //Initialise 
     $scope.tablet = $rootScope.layoutTablet;
@@ -347,8 +347,16 @@ angular.module('inflightApp.ticket')
 
     $scope.itemIndex = $stateParams.event_index;
     Event.findAll().then(function (events) {
-      $scope.events = events;
-      $scope.selectedEvent = events[$scope.itemIndex];
+      //$scope.events = events;
+      console.log("----");
+      console.log($scope.itemIndex);
+      for (e in events) {
+        console.log(events[e].id);
+        if (events[e].id == $scope.itemIndex) {
+          $scope.selectedEvent = events[e];
+        }
+      }
+      // $scope.selectedEvent = events[$scope.itemIndex];
       console.log($scope.selectedEvent);
     });
 

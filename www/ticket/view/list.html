@@ -38,7 +38,7 @@
   <div ng-show="viewModel.search == null || viewModel.search.length == 0">
     <div class="ticket-section">Popular</div>
     <ion-scroll direction="x" class="wide-as-needed dark">
-    <div ui-sref="detail({event_index: $index})" class="featured-item" ng-repeat="event in events track by $index">
+    <div ui-sref="detail({event_index: event.id})" class="featured-item" ng-repeat="event in events track by $index">
       <div class="featured-item" back-img="{{event.image_url}}"></div>
       <div class="aligned-center light">{{event.name}}</div>
     </div>
@@ -46,7 +46,7 @@
 </div>
 
 <ion-list>
-<ion-item auto-list-divider auto-list-divider-value="{{event.group}}" class="item-avatar" ng-repeat="event in events track by $index" ui-sref="detail({event_index: $index})">
+<ion-item auto-list-divider auto-list-divider-value="{{event.group}}" class="item-avatar" ng-repeat="event in events track by $index" ui-sref="detail({event_index: event.id})">
 <!-- <ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events track by $index" ui-sref="detail({event_index: $index})"> -->
 <div class="row">
   <div class="list-item" back-img="{{event.image_url}}"></div>
@@ -97,7 +97,7 @@
   <div ng-show="viewModel.search == null || viewModel.search.length == 0">
     <div class="ticket-section">Popular</div>
     <ion-scroll direction="x" class="wide-as-needed dark" style="height:300px;">
-    <div ui-sref="detail({event_index: $index})" class="featured-item big" ng-repeat="event in events track by $index">
+    <div ui-sref="detail({event_index: event.id})" class="featured-item big" ng-repeat="event in events track by $index">
       <div class="featured-item big" back-img="{{event.image_url}}"></div>
       <div class="aligned-center light">{{event.name}}</div>
     </div>
@@ -107,14 +107,13 @@
 <!-- ALL EVENTS -->
 <ion-list class="dark">
 <ion-item class="dark" 
-ng-repeat="eventType in allDates" 
-ui-sref="detail({event_index: $index})">
+ng-repeat="eventType in allDates">
 
 <div style="height:50px; font-weight:bold;">
   <h2>{{eventType.label}}</h2>
 </div>
 <ion-scroll direction="x" class="wide-as-needed dark" style="margin:-20px -50px -20px -50px; height:270px;">
-<div ui-sref="detail({event_index: $index})" class="featured-item dark" ng-repeat="event in events track by $index">
+<div  ng-show="eventType.date.getTime() == event.date.getTime();"   ui-sref="detail({event_index: event.id})" class="featured-item dark" ng-repeat="event in events track by $index">
   <div class="featured-item" back-img="{{event.image_url}}"></div>
   <div class="aligned-center light">{{event.name}}</div>
   <div class="aligned-center red-txt" style="margin-top:10px;"><small>{{event.time}}</small></div>

@@ -32,28 +32,28 @@ angular.module('starter', ['ionic','inflightApp.ticket','inflightApp.cityhook'])
       url: "/ticketmaster",
       templateUrl: "ticket/view/list.html"
     })
-    // .state('detail', {
-    //   url: "/ticketmaster/detail/:event_index",
-    //   templateUrl: "ticket/view/detail.html"
-    // })
-    // .state('artist', {
-    //   url: "/ticketmaster/detail/:event_index/artist",
-    //   templateUrl: "ticket/view/artist.html"
-    // })
-    // .state('ticket', {
-    //   url: "/ticketmaster/detail/:event_index/ticket",
-    //   templateUrl: "ticket/view/ticket.html"
-    // })
-    // .state('venue', {
-    //   url: "/ticketmaster/detail/:event_index/venue",
-    //   templateUrl: "ticket/view/venue.html"
-    // })
+    .state('detail', {
+      url: "/ticketmaster/detail/:event_index",
+      templateUrl: "ticket/view/detail.html"
+    })
+    .state('artist', {
+      url: "/ticketmaster/detail/:event_index/artist",
+      templateUrl: "ticket/view/artist.html"
+    })
+    .state('ticket', {
+      url: "/ticketmaster/detail/:event_index/ticket",
+      templateUrl: "ticket/view/ticket.html"
+    })
+    .state('venue', {
+      url: "/ticketmaster/detail/:event_index/venue",
+      templateUrl: "ticket/view/venue.html"
+    })
 
-    // //CITYHOOK
-    // .state('welcome', {
-    //   url: "/cityhook/:statusCode",
-    //   templateUrl: "cityhook/view/welcome.html"
-    // })
+    //CITYHOOK
+    .state('welcome', {
+      url: "/cityhook/:statusCode",
+      templateUrl: "cityhook/view/welcome.html"
+    })
     // .state('route', {
     //   url: "/cityhook/route/:type",
     //   templateUrl: "cityhook/view/route_selection.html"

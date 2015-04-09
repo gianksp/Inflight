@@ -45,103 +45,109 @@ angular.module('inflightApp.ticket',['ui.bootstrap.datetimepicker'])
         city:"Berlin", 
         nearby:true   
       },
+
+      { id:"3",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Festival Days Berlin",  
+        date:today, 
+        image_url:"http://www.berlin.de/binaries/asset/image_assets/2318175/source/1384179708/418x316/", 
+        popular:true, 
+        artist:"John Williams", 
+        ticket:true, 
+        venue:"The West County Hotel", 
+        city:"Berlin", 
+        nearby:true   
+      },
       
 
 
-
-
-
-      { id:"3",  time:"6:30 PM", group:"Tomorrow", name:"Expats in Dublin",  date:today, image_url:"https://worldmovingblog.files.wordpress.com/2013/03/400px-keizersgrachtreguliersgrachtamsterdam.jpg?w=300&h=200", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
       //Tomorrow
-      { id:"4",  time:"6:30 PM", group:"Tomorrow", name:"Women Tech Makers",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://www.ryerson.ca/news/news/Research_News/20120120_sleep/jcr:content/center/newsrelease/image.img.jpg/1327004308860.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"5",  time:"6:30 PM", group:"Tomorrow", name:"Irish Cheffs",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://photogallery.indiatimes.com/events/pune/christmas-cake-mixing-/Christmas-cake-mixing/photo/2604083/Christmas-cake-mixing.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+2
-      { id:"6",  time:"6:30 PM", group:"Tomorrow", name:"Artits 4 Life",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.lifeinkl.com/wp-content/uploads/2010/09/afg-sep2010-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"7",  time:"6:30 PM", group:"Sat, March 28th", name:"Disney Princess",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://yteevents.com/wp-content/uploads/2014/07/Frozen-Birthday-party-YTE-Events-Tampa-Ice-Queen-Princess-Elsa.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"8",  time:"6:30 PM", group:"Sat, March 28th", name:"Surfers Meetup",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.kawaipurapura.co.nz/wp-content/uploads/2013/11/IMG_7217-paddleboard-festival-2013-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"9",  time:"6:30 PM", group:"Sat, March 28th", name:"Monthly Bakery",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.pretoria-south-africa.com/images/the-cake-cartel-21521246.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel"  },
-      { id:"10", time:"6:30 PM", group:"Sun, March 29th", name:"Rugby Enthusiasts", date:new Date(), image_url:"http://c2.thejournal.ie/media/2014/07/logovii-mulipola-drives-through-luke-marshalls-tackle-2-630x445.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"11", time:"6:30 PM", group:"Sun, March 29th", name:"Meet Conor", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c0.thejournal.ie/media/2013/07/setanta-sports-ufc-announcement-2-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false   },
-      { id:"12", time:"6:30 PM", group:"Sun, March 29th", name:"Dublin Marathon", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c2.thejournal.ie/media/2015/01/fionnuala-britton-8-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+3
-      { id:"13", time:"6:30 PM", group:"Sun, March 29th", name:"Grand Prix", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c1.thejournal.ie/media/2014/11/f1-us-grand-prix-auto-racing-4-630x360.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:false },
-      { id:"14", time:"6:30 PM", group:"Sun, March 29th", name:"Amateur Rugby", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c3.thejournal.ie/media/2015/01/irelands-brian-odriscoll-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+4  
-      { id:"1",  time:"6:30 PM", group:"Today", name:"Spring Party",      date:today, image_url:"http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true },
-      { id:"2",  time:"6:30 PM", group:"Today", name:"Poker Tournament",  date:today, image_url:"http://www.aaavegas.com/wp-content/uploads/2011/07/November-Nine-Group-Shot-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"3",  time:"6:30 PM", group:"Tomorrow", name:"Expats in Dublin",  date:today, image_url:"https://worldmovingblog.files.wordpress.com/2013/03/400px-keizersgrachtreguliersgrachtamsterdam.jpg?w=300&h=200", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+5
-      { id:"4",  time:"6:30 PM", group:"Tomorrow", name:"Women Tech Makers",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://www.ryerson.ca/news/news/Research_News/20120120_sleep/jcr:content/center/newsrelease/image.img.jpg/1327004308860.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"5",  time:"6:30 PM", group:"Tomorrow", name:"Irish Cheffs",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://photogallery.indiatimes.com/events/pune/christmas-cake-mixing-/Christmas-cake-mixing/photo/2604083/Christmas-cake-mixing.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+6
-      { id:"6",  time:"6:30 PM", group:"Tomorrow", name:"Artits 4 Life",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.lifeinkl.com/wp-content/uploads/2010/09/afg-sep2010-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"7",  time:"6:30 PM", group:"Sat, March 28th", name:"Disney Princess",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://yteevents.com/wp-content/uploads/2014/07/Frozen-Birthday-party-YTE-Events-Tampa-Ice-Queen-Princess-Elsa.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"8",  time:"6:30 PM", group:"Sat, March 28th", name:"Surfers Meetup",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.kawaipurapura.co.nz/wp-content/uploads/2013/11/IMG_7217-paddleboard-festival-2013-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"9",  time:"6:30 PM", group:"Sat, March 28th", name:"Monthly Bakery",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.pretoria-south-africa.com/images/the-cake-cartel-21521246.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel"  },
-      { id:"10", time:"6:30 PM", group:"Sun, March 29th", name:"Rugby Enthusiasts", date:new Date(), image_url:"http://c2.thejournal.ie/media/2014/07/logovii-mulipola-drives-through-luke-marshalls-tackle-2-630x445.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"11", time:"6:30 PM", group:"Sun, March 29th", name:"Meet Conor", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c0.thejournal.ie/media/2013/07/setanta-sports-ufc-announcement-2-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false   },
-      { id:"12", time:"6:30 PM", group:"Sun, March 29th", name:"Dublin Marathon", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c2.thejournal.ie/media/2015/01/fionnuala-britton-8-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+7
-      { id:"13", time:"6:30 PM", group:"Sun, March 29th", name:"Grand Prix", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c1.thejournal.ie/media/2014/11/f1-us-grand-prix-auto-racing-4-630x360.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:false },
-      { id:"14", time:"6:30 PM", group:"Sun, March 29th", name:"Amateur Rugby", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c3.thejournal.ie/media/2015/01/irelands-brian-odriscoll-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+8
-      { id:"1",  time:"6:30 PM", group:"Today", name:"Spring Party",      date:today, image_url:"http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true },
-      { id:"2",  time:"6:30 PM", group:"Today", name:"Poker Tournament",  date:today, image_url:"http://www.aaavegas.com/wp-content/uploads/2011/07/November-Nine-Group-Shot-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"3",  time:"6:30 PM", group:"Tomorrow", name:"Expats in Dublin",  date:today, image_url:"https://worldmovingblog.files.wordpress.com/2013/03/400px-keizersgrachtreguliersgrachtamsterdam.jpg?w=300&h=200", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+9
-      { id:"4",  time:"6:30 PM", group:"Tomorrow", name:"Women Tech Makers",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://www.ryerson.ca/news/news/Research_News/20120120_sleep/jcr:content/center/newsrelease/image.img.jpg/1327004308860.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"5",  time:"6:30 PM", group:"Tomorrow", name:"Irish Cheffs",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://photogallery.indiatimes.com/events/pune/christmas-cake-mixing-/Christmas-cake-mixing/photo/2604083/Christmas-cake-mixing.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+10
-      { id:"6",  time:"6:30 PM", group:"Tomorrow", name:"Artits 4 Life",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.lifeinkl.com/wp-content/uploads/2010/09/afg-sep2010-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"7",  time:"6:30 PM", group:"Sat, March 28th", name:"Disney Princess",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://yteevents.com/wp-content/uploads/2014/07/Frozen-Birthday-party-YTE-Events-Tampa-Ice-Queen-Princess-Elsa.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"8",  time:"6:30 PM", group:"Sat, March 28th", name:"Surfers Meetup",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.kawaipurapura.co.nz/wp-content/uploads/2013/11/IMG_7217-paddleboard-festival-2013-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"9",  time:"6:30 PM", group:"Sat, March 28th", name:"Monthly Bakery",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.pretoria-south-africa.com/images/the-cake-cartel-21521246.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel"  },
-      { id:"10", time:"6:30 PM", group:"Sun, March 29th", name:"Rugby Enthusiasts", date:new Date(), image_url:"http://c2.thejournal.ie/media/2014/07/logovii-mulipola-drives-through-luke-marshalls-tackle-2-630x445.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"11", time:"6:30 PM", group:"Sun, March 29th", name:"Meet Conor", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c0.thejournal.ie/media/2013/07/setanta-sports-ufc-announcement-2-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false   },
-      { id:"12", time:"6:30 PM", group:"Sun, March 29th", name:"Dublin Marathon", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c2.thejournal.ie/media/2015/01/fionnuala-britton-8-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+11
-      { id:"13", time:"6:30 PM", group:"Sun, March 29th", name:"Grand Prix", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c1.thejournal.ie/media/2014/11/f1-us-grand-prix-auto-racing-4-630x360.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:false },
-      { id:"14", time:"6:30 PM", group:"Sun, March 29th", name:"Amateur Rugby", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c3.thejournal.ie/media/2015/01/irelands-brian-odriscoll-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+12
-      { id:"1",  time:"6:30 PM", group:"Today", name:"Spring Party",      date:today, image_url:"http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true },
-      { id:"2",  time:"6:30 PM", group:"Today", name:"Poker Tournament",  date:today, image_url:"http://www.aaavegas.com/wp-content/uploads/2011/07/November-Nine-Group-Shot-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"3",  time:"6:30 PM", group:"Tomorrow", name:"Expats in Dublin",  date:today, image_url:"https://worldmovingblog.files.wordpress.com/2013/03/400px-keizersgrachtreguliersgrachtamsterdam.jpg?w=300&h=200", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+13
-      { id:"4",  time:"6:30 PM", group:"Tomorrow", name:"Women Tech Makers",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://www.ryerson.ca/news/news/Research_News/20120120_sleep/jcr:content/center/newsrelease/image.img.jpg/1327004308860.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"5",  time:"6:30 PM", group:"Tomorrow", name:"Irish Cheffs",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://photogallery.indiatimes.com/events/pune/christmas-cake-mixing-/Christmas-cake-mixing/photo/2604083/Christmas-cake-mixing.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+14
-      { id:"6",  time:"6:30 PM", group:"Tomorrow", name:"Artits 4 Life",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.lifeinkl.com/wp-content/uploads/2010/09/afg-sep2010-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"7",  time:"6:30 PM", group:"Sat, March 28th", name:"Disney Princess",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://yteevents.com/wp-content/uploads/2014/07/Frozen-Birthday-party-YTE-Events-Tampa-Ice-Queen-Princess-Elsa.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"8",  time:"6:30 PM", group:"Sat, March 28th", name:"Surfers Meetup",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.kawaipurapura.co.nz/wp-content/uploads/2013/11/IMG_7217-paddleboard-festival-2013-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"9",  time:"6:30 PM", group:"Sat, March 28th", name:"Monthly Bakery",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.pretoria-south-africa.com/images/the-cake-cartel-21521246.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel"  },
-      { id:"10", time:"6:30 PM", group:"Sun, March 29th", name:"Rugby Enthusiasts", date:new Date(), image_url:"http://c2.thejournal.ie/media/2014/07/logovii-mulipola-drives-through-luke-marshalls-tackle-2-630x445.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"11", time:"6:30 PM", group:"Sun, March 29th", name:"Meet Conor", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c0.thejournal.ie/media/2013/07/setanta-sports-ufc-announcement-2-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false   },
-      { id:"12", time:"6:30 PM", group:"Sun, March 29th", name:"Dublin Marathon", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c2.thejournal.ie/media/2015/01/fionnuala-britton-8-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+15
-      { id:"13", time:"6:30 PM", group:"Sun, March 29th", name:"Grand Prix", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c1.thejournal.ie/media/2014/11/f1-us-grand-prix-auto-racing-4-630x360.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:false },
-      { id:"14", time:"6:30 PM", group:"Sun, March 29th", name:"Amateur Rugby", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c3.thejournal.ie/media/2015/01/irelands-brian-odriscoll-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+16
-      { id:"1",  time:"6:30 PM", group:"Today", name:"Spring Party",      date:today, image_url:"http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true },
-      { id:"2",  time:"6:30 PM", group:"Today", name:"Poker Tournament",  date:today, image_url:"http://www.aaavegas.com/wp-content/uploads/2011/07/November-Nine-Group-Shot-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"3",  time:"6:30 PM", group:"Tomorrow", name:"Expats in Dublin",  date:today, image_url:"https://worldmovingblog.files.wordpress.com/2013/03/400px-keizersgrachtreguliersgrachtamsterdam.jpg?w=300&h=200", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+17
-      { id:"4",  time:"6:30 PM", group:"Tomorrow", name:"Women Tech Makers",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://www.ryerson.ca/news/news/Research_News/20120120_sleep/jcr:content/center/newsrelease/image.img.jpg/1327004308860.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"5",  time:"6:30 PM", group:"Tomorrow", name:"Irish Cheffs",  date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), image_url:"http://photogallery.indiatimes.com/events/pune/christmas-cake-mixing-/Christmas-cake-mixing/photo/2604083/Christmas-cake-mixing.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      //+18
-      { id:"6",  time:"6:30 PM", group:"Tomorrow", name:"Artits 4 Life",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.lifeinkl.com/wp-content/uploads/2010/09/afg-sep2010-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
-      { id:"7",  time:"6:30 PM", group:"Sat, March 28th", name:"Disney Princess",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://yteevents.com/wp-content/uploads/2014/07/Frozen-Birthday-party-YTE-Events-Tampa-Ice-Queen-Princess-Elsa.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"8",  time:"6:30 PM", group:"Sat, March 28th", name:"Surfers Meetup",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.kawaipurapura.co.nz/wp-content/uploads/2013/11/IMG_7217-paddleboard-festival-2013-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"9",  time:"6:30 PM", group:"Sat, March 28th", name:"Monthly Bakery",  date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://www.pretoria-south-africa.com/images/the-cake-cartel-21521246.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel"  },
-      { id:"10", time:"6:30 PM", group:"Sun, March 29th", name:"Rugby Enthusiasts", date:new Date(), image_url:"http://c2.thejournal.ie/media/2014/07/logovii-mulipola-drives-through-luke-marshalls-tackle-2-630x445.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:false   },
-      { id:"11", time:"6:30 PM", group:"Sun, March 29th", name:"Meet Conor", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c0.thejournal.ie/media/2013/07/setanta-sports-ufc-announcement-2-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false   },
-      { id:"12", time:"6:30 PM", group:"Sun, March 29th", name:"Dublin Marathon", date:new Date(today.getTime() + 1+(24 * 60 * 60 * 1000)), image_url:"http://c2.thejournal.ie/media/2015/01/fionnuala-britton-8-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+19
-      { id:"13", time:"6:30 PM", group:"Sun, March 29th", name:"Grand Prix", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c1.thejournal.ie/media/2014/11/f1-us-grand-prix-auto-racing-4-630x360.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:false },
-      { id:"14", time:"6:30 PM", group:"Sun, March 29th", name:"Amateur Rugby", date:new Date(today.getTime() + 2+(24 * 60 * 60 * 1000)), image_url:"http://c3.thejournal.ie/media/2015/01/irelands-brian-odriscoll-390x285.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:false  },
-      //+20
-      { id:"1",  time:"6:30 PM", group:"Today", name:"Spring Party",      date:today, image_url:"http://www.skiheavenly.com/~/media/heavenly/images/732x260%20header%20images/events-heavenly-header.ashx", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true },
-      { id:"2",  time:"6:30 PM", group:"Today", name:"Poker Tournament",  date:today, image_url:"http://www.aaavegas.com/wp-content/uploads/2011/07/November-Nine-Group-Shot-400px.jpg", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
-      { id:"3",  time:"6:30 PM", group:"Tomorrow", name:"Expats in Dublin",  date:today, image_url:"https://worldmovingblog.files.wordpress.com/2013/03/400px-keizersgrachtreguliersgrachtamsterdam.jpg?w=300&h=200", popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
+      { id:"4",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"The Wall",  
+        date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), 
+        image_url:"http://www.visitberlin.de/sites/default/files/imagecache/high_l_slideshow_580_237/asisi_mauerpanorama_580x237_c_tom_schulze__asisi.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:true  },
+      
+
+
+      { id:"5",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Gallery Weekend Berlin 2015",  
+        date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), 
+        image_url:"http://www.visitberlin.de/sites/default/files/imagecache/high_l_slideshow_580_237/jh_ghallery_weekend_neugerriemschneider-crop_c_marco_funke.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:true   },
+
+
+
+              //Today
+      { id:"6",  
+        time:"6:30 PM", 
+        group:"Today", 
+        name:"The Airborne Toxic Event",      
+        date:new Date(today.getTime() + 2*(24 * 60 * 60 * 1000)), 
+        image_url:"http://images.sk-static.com/images/media/profile_images/artists/579574/card_avatar", 
+        popular:true, 
+        artist:"The Airborne Toxic Event", 
+        ticket:true, 
+        venue:"C-Club, Berlin", 
+        city:"Berlin", 
+        nearby:true 
+      },
+
+      { id:"7",  
+        time:"6:30 PM", 
+        group:"Today", 
+        name:"Therapy?",  
+        date:new Date(today.getTime() + 2*(24 * 60 * 60 * 1000)), 
+        image_url:"http://images.sk-static.com/images/media/profile_images/artists/108521/card_avatar", 
+        popular:true, 
+        artist:"God Damn", 
+        ticket:true, 
+        venue:"Bi Nuu, Berlin", 
+        city:"Berlin", 
+        nearby:true   
+      },
+
+      { id:"8",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Festival Days Berlin",  
+        date:new Date(today.getTime() + 2*(24 * 60 * 60 * 1000)), 
+        image_url:"http://events.germany.travel/media/teaser_Gala_Innenraum2_300dpi_Plamboeck_300x200.jpg", 
+        popular:true, 
+        artist:"John Williams", 
+        ticket:true, 
+        venue:"The West County Hotel", 
+        city:"Berlin", 
+        nearby:true   
+      },
+      
+
+
+      //Tomorrow
+      { id:"9",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"The Wall",  
+        date:new Date(today.getTime() + 3*(24 * 60 * 60 * 1000)), 
+        image_url:"http://th07.deviantart.net/fs48/200H/i/2009/202/5/7/U2_Concert_in_Berlin_IV_by_martin1110.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:true  },
+      
+
+
+      { id:"10",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Gallery Weekend Berlin 2015",  
+        date:new Date(today.getTime() + 3*(24 * 60 * 60 * 1000)), 
+        image_url:"http://blogs-images.forbes.com/zackomalleygreenburg/files/2012/11/300x20011.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:true   }
+
+      
     ];
 
     var templates = [ 
@@ -250,17 +256,21 @@ angular.module('inflightApp.ticket',['ui.bootstrap.datetimepicker'])
       console.log(location);
 
       //Generate if they dont exist
-      if (events.length == 0) {
-        Event.generate();
-      }
+      // if (events.length == 0) {
+      //   Event.generate();
+      // }
+
 
 
       for (e in events) {
         eventTarget = events[e];
+        if (filterDate != null && filterDate != undefined)
+        console.log(eventTarget.date.getTime()-filterDate.getTime());
         //Add to filtered array to return either if there are no filters or if the filter is contained within the name of the event
         if ((filter == null || filter == '' || eventTarget.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) &&
            (location == null || location == '' || location === undefined || eventTarget.city == location.name) &&
-           (eventTarget.nearby != isFavorite) && (filterDate == null || filterDate == undefined || filterDate.getTime() <= eventTarget.date.getTime())) {
+           (eventTarget.nearby != isFavorite) && (filterDate == null || filterDate == undefined || eventTarget.date.getTime()- filterDate.getTime() >= -1)) {
+          console.log("passed ");
           filteredEvents.push(eventTarget);
         }
       }
@@ -336,6 +346,9 @@ angular.module('inflightApp.ticket',['ui.bootstrap.datetimepicker'])
       return deferred.promise;
     }
 
+    prototype.getPic = function () {
+
+    }
     /**
      * Return Berlin as default city
      * @return {[type]} [description]
