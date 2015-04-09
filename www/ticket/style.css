@@ -361,6 +361,11 @@ cardflow .cardflow-card.cardflow-active {
     transform: scale(1);
 }
 
+.button.button-positive {
+  background:green;
+  color:white;
+  border-color: green;
+}
 
 
 .picker{font-size:16px;text-align:left;line-height:1.2;color:#000;position:absolute;z-index:10000;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.picker__input{cursor:default}.picker__input.picker__input--active{border-color:#0089ec}.picker__holder{width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}/*!

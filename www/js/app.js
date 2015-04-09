@@ -54,18 +54,18 @@ angular.module('starter', ['ionic','inflightApp.ticket','inflightApp.cityhook'])
       url: "/cityhook/:statusCode",
       templateUrl: "cityhook/view/welcome.html"
     })
-    // .state('route', {
-    //   url: "/cityhook/route/:type",
-    //   templateUrl: "cityhook/view/route_selection.html"
-    // })
-    // .state('routeDetail', {
-    //   url: "/cityhook/routeDetail/:type",
-    //   templateUrl: "cityhook/view/route_details.html"
-    // })
-    // .state('purchase', {
-    //   url: "/cityhook/purchase/:index",
-    //   templateUrl: "cityhook/view/purchase.html"
-    // })
+    .state('route', {
+      url: "/cityhook/route/:type",
+      templateUrl: "cityhook/view/route_selection.html"
+    })
+    .state('routeDetail', {
+      url: "/cityhook/routeDetail/:type",
+      templateUrl: "cityhook/view/route_details.html"
+    })
+    .state('purchase', {
+      url: "/cityhook/purchase/:index",
+      templateUrl: "cityhook/view/purchase.html"
+    })
 
     $urlRouterProvider.otherwise("/ticketmaster");
 });
