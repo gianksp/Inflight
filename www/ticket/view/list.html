@@ -1,29 +1,23 @@
 <ion-view title="Events" ng-controller="EventListController" class="dark">
 
-<!-- MOBILE VERSION -->
-<ion-content overflow-scroll="true" class="black" scrollbar-y="yes">
+<ion-content ng-show="!layoutTablet" class="info" >
 
-<div class="black" ng-show="!layoutTablet">
+<div class="black" >
 
-  <!-- LOGO -->
   <div id="logo" class="row" style="background-color:black !important; margin:0 auto;">
-    <img style="margin:0 auto; width:250px; height:auto;" src="img/logo.png"></img>
+    <img style="margin:0 auto; width:200px; height:80px;" src="img/logo.png"></img>
   </div>
-
-  <!-- LOCATION -->
-  <div class="parent black aligned-center ">
+  <div class="parent black aligned-center " style="margin-top:-10px;">
     <span class="small light" style="font-size:16px;">Location:</span>
     <span class="btn big red-txt" style="font-size:20px; font-weight:bold;">{{selectedLocation.name}}</span>
   </div>
-  <!-- SEARCH -->
-  <div id="search-box" class="bar bar-header item-input-inset black" >
+  <div id="search-box" class="bar bar-header item-input-inset black">
     <div class="item-input-wrapper dark">
       <i class="icon ion-search placeholder-icon"></i>
       <input class="light" type="text" placeholder="Location" ng-model="selectedLocation.name" ng-click="openPopover($event)">
       <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
     </div>
-    <span><button ng-click="openDatePicker()" class="ion-calendar"></button> </span>
-    <!-- <button pick-a-date="date" class="ion-calendar"></button> -->
+    <span><img src="img/calendar.png" style="width:34px; height:34px;" ng-click="openDatePicker()" ></img> </span>
   </div>
 
   <div id="search-box" class="bar bar-header item-input-inset black">
@@ -34,7 +28,6 @@
     </div>
   </div>
 
-  <!-- FEATURED EVENTS -->
   <div ng-show="viewModel.search == null || viewModel.search.length == 0">
     <div class="ticket-section">Popular</div>
     <ion-scroll direction="x" class="wide-as-needed dark">
@@ -47,43 +40,44 @@
 
 <ion-list>
 <ion-item auto-list-divider auto-list-divider-value="{{event.group}}" class="item-avatar" ng-repeat="event in events track by $index" ui-sref="detail({event_index: event.id})">
-<div class="row">
+<div class="row" style="margin-left:-60px;">
   <div class="list-item" back-img="{{event.image_url}}"></div>
   <div class="col">
     <div class="title">{{event.name}}</div>
     <div class="text">{{event.venue}}</div>
     <div class="text">{{event.time}}</div>
   </div>
-  <i class="icon ion-chevron-right icon-accessory" style="margin-top:25px;"></i>
+  <i class="icon ion-chevron-right icon-accessory" style="float:right; margin-top:25px; margin-right:-90px;"></i>
 </div>
 </ion-item>
-
-
 
 </ion-list>
 
 </div>
 
-<div class="black" ng-show="layoutTablet">
+</ion-content>
 
-  <!-- LOGO -->
+<ion-content ng-show="layoutTablet" class="info"  overflow-scroll="true" scrollbar-y="yes">
+
+<div class="black">
+
+  
   <div id="logo" class="row" style="background-color:black !important; margin:0 auto;">
     <img style="margin:0 auto; width:250px; height:auto;" src="img/logo.png"></img>
   </div>
-  <!-- LOCATION -->
-  <div class="parent black aligned-center " style="margin-top:-30px;">
+
+  <div class="parent black aligned-center " style="margin-top:-10px;">
     <span class="small light" style="font-size:16px;">Location:</span>
     <span class="btn big red-txt" style="font-size:20px; font-weight:bold;">{{selectedLocation.name}}</span>
   </div>
-  <!-- SEARCH -->
+  
   <div id="search-box" class="bar bar-header item-input-inset black" >
     <div class="item-input-wrapper dark">
       <i class="icon ion-search placeholder-icon"></i>
       <input class="light" type="text" placeholder="Location" ng-model="selectedLocation.name" ng-click="openPopover($event)">
       <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
     </div>
-    <span><button ng-click="openDatePicker()" class="ion-calendar"></button> </span>
-    <!-- <button pick-a-date="date" class="ion-calendar"></button> -->
+    <span><img src="img/calendar.png" style="width:34px; height:34px;" ng-click="openDatePicker()" ></img> </span>
   </div>
 
   <div id="search-box" class="bar bar-header item-input-inset black">
@@ -95,7 +89,6 @@
   </div>
 
 
-  <!-- FEATURED EVENTS -->
   <div ng-show="viewModel.search == null || viewModel.search.length == 0">
     <div class="ticket-section">Popular</div>
     <ion-scroll direction="x" class="wide-as-needed dark" style="height:300px;">
@@ -106,7 +99,6 @@
   </ion-scroll>
 </div>
 
-<!-- ALL EVENTS -->
 <ion-list class="dark">
 <ion-item class="dark" 
 ng-repeat="eventType in allDates">
@@ -129,8 +121,6 @@ ng-repeat="eventType in allDates">
 </div>
 
 </ion-content>
-
-
 
 
 </ion-view>

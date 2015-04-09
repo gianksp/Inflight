@@ -145,9 +145,159 @@ angular.module('inflightApp.ticket',['ui.bootstrap.datetimepicker'])
         name:"Gallery Weekend Berlin 2015",  
         date:new Date(today.getTime() + 3*(24 * 60 * 60 * 1000)), 
         image_url:"http://blogs-images.forbes.com/zackomalleygreenburg/files/2012/11/300x20011.jpg", 
-        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:true   }
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"Berlin", nearby:true   },
+
+
+
+
+
+
+
+
+
+
+
+
+
+              //Today
+      { id:"11",  
+        time:"6:30 PM", 
+        group:"Today", 
+        name:"The Airborne Toxic Event",      
+        date:today, 
+        image_url:"http://images.sk-static.com/images/media/profile_images/artists/579574/card_avatar", 
+        popular:true, 
+        artist:"The Airborne Toxic Event", 
+        ticket:true, 
+        venue:"C-Club, Berlin", 
+        city:"London", 
+        nearby:true 
+      },
+
+      { id:"12",  
+        time:"6:30 PM", 
+        group:"Today", 
+        name:"Therapy?",  
+        date:today, 
+        image_url:"http://images.sk-static.com/images/media/profile_images/artists/108521/card_avatar", 
+        popular:true, 
+        artist:"God Damn", 
+        ticket:true, 
+        venue:"Bi Nuu, Berlin", 
+        city:"London", 
+        nearby:true   
+      },
+
+      { id:"13",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Festival Days Berlin",  
+        date:today, 
+        image_url:"http://www.berlin.de/binaries/asset/image_assets/2318175/source/1384179708/418x316/", 
+        popular:true, 
+        artist:"John Williams", 
+        ticket:true, 
+        venue:"The West County Hotel", 
+        city:"London", 
+        nearby:true   
+      },
+      
+
+
+      //Tomorrow
+      { id:"14",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"The Wall",  
+        date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), 
+        image_url:"http://www.visitberlin.de/sites/default/files/imagecache/high_l_slideshow_580_237/asisi_mauerpanorama_580x237_c_tom_schulze__asisi.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"Berlin", nearby:true  },
+      
+
+
+      { id:"15",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Gallery Weekend Berlin 2015",  
+        date:new Date(today.getTime() + (24 * 60 * 60 * 1000)), 
+        image_url:"http://www.visitberlin.de/sites/default/files/imagecache/high_l_slideshow_580_237/jh_ghallery_weekend_neugerriemschneider-crop_c_marco_funke.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   },
+
+
+
+              //Today
+      { id:"16",  
+        time:"6:30 PM", 
+        group:"Today", 
+        name:"The Airborne Toxic Event",      
+        date:new Date(today.getTime() + 2*(24 * 60 * 60 * 1000)), 
+        image_url:"http://images.sk-static.com/images/media/profile_images/artists/579574/card_avatar", 
+        popular:true, 
+        artist:"The Airborne Toxic Event", 
+        ticket:true, 
+        venue:"C-Club, Berlin", 
+        city:"London", 
+        nearby:true 
+      },
+
+      { id:"17",  
+        time:"6:30 PM", 
+        group:"Today", 
+        name:"Therapy?",  
+        date:new Date(today.getTime() + 2*(24 * 60 * 60 * 1000)), 
+        image_url:"http://images.sk-static.com/images/media/profile_images/artists/108521/card_avatar", 
+        popular:true, 
+        artist:"God Damn", 
+        ticket:true, 
+        venue:"Bi Nuu, Berlin", 
+        city:"London", 
+        nearby:true   
+      },
+
+      { id:"18",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Festival Days Berlin",  
+        date:new Date(today.getTime() + 2*(24 * 60 * 60 * 1000)), 
+        image_url:"http://events.germany.travel/media/teaser_Gala_Innenraum2_300dpi_Plamboeck_300x200.jpg", 
+        popular:true, 
+        artist:"John Williams", 
+        ticket:true, 
+        venue:"The West County Hotel", 
+        city:"London", 
+        nearby:true   
+      },
+      
+
+
+      //Tomorrow
+      { id:"19",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"The Wall",  
+        date:new Date(today.getTime() + 3*(24 * 60 * 60 * 1000)), 
+        image_url:"http://th07.deviantart.net/fs48/200H/i/2009/202/5/7/U2_Concert_in_Berlin_IV_by_martin1110.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel" , city:"London", nearby:true  },
+      
+
+
+      { id:"20",  
+        time:"6:30 PM", 
+        group:"Tomorrow", 
+        name:"Gallery Weekend Berlin 2015",  
+        date:new Date(today.getTime() + 3*(24 * 60 * 60 * 1000)), 
+        image_url:"http://blogs-images.forbes.com/zackomalleygreenburg/files/2012/11/300x20011.jpg", 
+        popular:true, artist:"John Williams", ticket:true, venue:"The West County Hotel", city:"London", nearby:true   }
+
 
       
+
+
+
+
+
+
+
     ];
 
     var templates = [ 
@@ -295,6 +445,7 @@ angular.module('inflightApp.ticket',['ui.bootstrap.datetimepicker'])
      * @type {Array}
      */
     var items = [
+    { id:"11",  name:"London", country:"UK" },
       { id:"1",  name:"Berlin", country:"Germany" },
       { id:"2",  name:"Munich", country:"Germany" },
       { id:"3",  name:"Frankfurt", country:"Germany" },
@@ -305,7 +456,6 @@ angular.module('inflightApp.ticket',['ui.bootstrap.datetimepicker'])
       { id:"8",  name:"Heidelberg", country:"Germany" },
       { id:"9",  name:"Weimar", country:"Germany" },
       { id:"10",  name:"Düsseldorf", country:"Germany" },
-      { id:"11",  name:"London", country:"UK" },
       { id:"12",  name:"Manchester", country:"UK" },
       { id:"13",  name:"Liverpool", country:"UK" },
       { id:"14",  name:"Oxford", country:"UK" },

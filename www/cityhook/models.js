@@ -14,8 +14,9 @@ angular.module('inflightApp.cityhook',['ui.bootstrap.datetimepicker'])
      * @type {Array}
      */
     var items = [
-    { id:"1",  name:"Berlin", country:"Germany" },
+    
       { id:"11",  name:"London", country:"UK" },
+    { id:"1",  name:"Berlin", country:"Germany" },
       
       { id:"2",  name:"Munich", country:"Germany" },
       { id:"3",  name:"Frankfurt", country:"Germany" },
