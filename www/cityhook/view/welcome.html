@@ -1,6 +1,6 @@
 <ion-view title="Cityhook" ng-controller="WelcomeController" ng-init="initialize()" class="dark">
 
-<ion-content class="info" scrollbar-y="yes">
+<ion-content class="info" ng-show="tablet">
 
 <div class="row responsive-sm">
 
@@ -8,17 +8,12 @@
 
     <div class="button-bar" style="position:relative; z-index:10;">
     <a class="btn button" ng-model="currentSelection.name" ng-click="openPopover($event)"><strong>{{currentSelection.name || 'Search'}}</strong><i style="margin-left:10px; width:15px; height:15px;"class="icon ion-search"></i></a>
-    <a class="btn button" pick-a-time="start"><strong>Depart</strong><i style="margin-left:10px; width:15px; height:15px;"class="icon ion-chevron-down"></i></a>
-    <a class="btn button" pick-a-time="end"><strong>Return</strong><i style="margin-left:10px; width:15px; height:15px;"class="icon ion-chevron-down"></i></a>
+    <a class="btn button" ng-click="leavePicker()"><strong>Depart</strong><i style="margin-left:10px; width:15px; height:15px;"class="icon ion-chevron-down"></i></a>
+    <a class="btn button" ng-click="returnPicker()"><strong>Return</strong><i style="margin-left:10px; width:15px; height:15px;"class="icon ion-chevron-down"></i></a>
   </div>
-
-  <div class="map" id="map" style="height:250px; !important; position:relative; float:left; z-index:1;" data-tap-disabled="true">
-
-    <section>
-      <div><button>button</button>
-      </div>
-      <h1>some long long long long header, a whole line, 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6</h1>
-    </section>
+<div class="google-map">
+  <div class="map" id="map"  data-tap-disabled="true">
+</div>
 
   </div>
 </div>
@@ -30,28 +25,23 @@
       <img src="img/cityhook.png"></img>
     </div>
 
-    <div class="row">
+    <div style="margin:0 auto; width:100%; text-align:center;">
+    <img ng-show="step==1" style="width:75%; margin:0 auto;" src="img/step1.png"></img>
+    <img ng-show="step==2" style="width:75%; margin:0 auto;" src="img/step2.png"></img>
+    <img ng-show="step==3" style="width:75%; margin:0 auto;" src="img/step3.png"></img>
+    </div>
+
+    <div class="row" style="text-align:center; width:100%;">
 
       <div class="col-33">
-        <div style="overflow:hidden;">
-          <input style="height:20px; width:30px; padding:10px;" type="radio" ng-model="step.route" value="red">
-          <img style="width:80%;" src="img/separator.png"/>
-        </div>
         <h5 class="light">SELECT ROUTES</h5>
       </div>
 
       <div class="col-33">
-        <div style="overflow:hidden;">
-          <input style="height:20px; width:30px;" type="radio" ng-model="step.payment" value="red">
-          <img style="width:80%;" src="img/separator.png"/>
-        </div>
         <h5 class="light">PAYMENT</h5>
       </div>
 
       <div class="col-33">
-        <div style="overflow:hidden;">
-          <input style="height:20px; width:30px;" type="radio" ng-model="step.ticketing" value="red">
-        </div>
         <h5 class="light">TICKETING</h5>
       </div>
 
@@ -59,58 +49,125 @@
   </div>
 
 
-  <!-- MASTER -->
-  <div ng-show="statusCode == null || statusCode == undefined || statusCode == ''">
-    <h4 class="light">Quick selection:</h4>
-    <div>
-      <img src="img/location_white.png" style="height:20px;"></img><strong style="margin:10px; padding:10px;" class="light">Departing London Heathrow 10:30 a.m</strong>
-    </div>
 
-    <ion-list>
 
-    <ion-item href="#/cityhook/route/premium" style="margin-top:10px;">
+<div ng-show="step==3" style="height:65vh;   overflow: scroll;">
+
+  <h4 class="light">Ticker Confirmation:</h4>
+
+
+  <div class="list card">
     <div class="row">
       <div class="col-15 overflow:hidden;">
-        <img src="img/shuttle_premium.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+        <img src="img/heathrow_express.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
       </div>
       <div class="col-66" style="padding-left:10px;">
-        <h5>Premium Shuttle <small>by Concierge Companion</small></h5>
-        <h5 style="margin-top:10px;">80€ Per Person - 45 min.<br>Mobile Ticketing</h5>
+        <h4>{{selectedTransport.name}}</h4>
+        <a>{{selectedTransport.by}}</a>
+      </div>
+    </div> 
+      <div>
+      <h4 style="margin:8px;" class="red-txt">Order Confirmation:</h4>
+      <a>{{selectedTransport.price}}-{{selectedTransport.time}}<br>
+        From: London Heathrow<br>
+        To: {{currentSelection.name}} {{formatDate(leaves)}}<br>
+        {{totalPassengers}} Passengers<br>
+        Price {{getPrice()}}€</a>
+      </div>
+      <div class="aligned-center">
+        <img src="img/qr.png" style="width:150px; height:150px;"></img>
+      </div>
+
+        <div class="aligned-center">
+    <img src="img/passbook.png" style="height:50px; width:auto; border-radius:8px;"></img>
+  </div>
+  </div>
+
+
+
+</div>
+
+
+  <div ng-show="step ==1" >
+    <h4 class="light">Quick selection:</h4>
+    <div>
+      <img src="img/location_white.png" style="height:20px;"></img><strong style="margin:10px; padding:10px;" class="light">Departing {{currentSelection.name}} {{formatDate(leaves)}}</strong>
+    </div>
+    <div style="height:52vh;   overflow: scroll;">
+    <ion-list>
+    <ion-item ng-click="selectTransport(transport)" ng-repeat="transport in transports">
+      <div class="row">
+      <div class="col-15 overflow:hidden;">
+        <img ng-src="{{transport.pic}}" style="height:70px; width:70px; overflow:hidden;"></img>
+      </div>
+      <div class="col-66" style="padding-left:10px;">
+        <h2><strong>{{transport.name}} </strong><small class="red-txt small-txt">by {{transport.by}}</small></h2>
+        <h3 style="margin-top:20px;">{{transport.price}}€ -{{transport.time}}<br>Mobile Ticketing</h3>
       </div>
     </div>
-  </ion-item>
-
-  <ion-item href="#/cityhook/route/standard" style="margin-top:10px;">
-  <div class="row">
-    <div class="col-15 overflow:hidden;">
-      <img src="img/shuttle_standard.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
-    </div>
-    <div class="col-66" style="padding-left:10px;">
-      <h5>Standard Shuttle <small>by Silver Shuttle</small></h5>
-      <h5 style="margin-top:10px;">45€ Per Person - 55 min.<br>Mobile Ticketing</h5>
-    </div>
+    </ion-item>
+    </ion-list>
   </div>
-</ion-item>
-
-<ion-item href="#/cityhook/route/express" style="margin-top:10px;">
-<div class="row">
-  <div class="col-15 overflow:hidden;">
-    <img src="img/heathrow_express.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
-  </div>
-  <div class="col-66" style="padding-left:10px;">
-    <h5>Heathrow Express <small>by London Trains</small></h5>
-    <h5 style="margin-top:10px;">75€ Per Person - 25 min.<br>Mobile Ticketing</h5>
+    <div style="margin-top: 20px;" >
+     <button class="red-txt" style="width:100%; height:60px; font-size:20px;" ng-click="customState()" >Custom Journey</button>
   </div>
 </div>
-</ion-item>
 
-</ion-list>
+<div ng-show="step==2" class="list card" style="height:65vh;   overflow: scroll;">
+  <div class="item header dark-header">
+    <h2 class="aligned-center light">Purchase Ticket</h2>
+  </div>
+  <div style="margin:15px;">
+    <h2 >{{selectedTransport.name}}</h2>
+    <h5 >{{selectedTransport.by}}</h5>
+    <div class="row">
+      <div class="col">
+        <a>{{selectedTransport.price}}</a>
+      </div>
+      <div class="col">
+        <img src="img/mobile.png" style="width:25px; height:25px;">
+        <h5 class="red-txt">Mobile<br>ticketing</h5>
+      </div>
+    </div>
+
+    <div style="margin: 20px 0px 30px 0px;">
+      <h2>From: London Heathrow</h2>
+      <h2>To: {{currentSelection.name}} {{formatDate(leaves)}}</h2>
+    </div>
+
+    <div style="margin: 20px 0px 30px 0px;">
+      <h2>Number of passengers: <button class="round btn aligned-center button light dark-header" style="width:80px; height:100%;"><a style="float:left;">2</a>  <i style="float:right;"class="icon ion-chevron-down"></i>
+    </button></h2>   
+    </div>
 
 
-<div style="margin-top: 20px;" >
- <button class="red-txt" style="width:100%; height:60px; font-size:20px;" ng-click="customState()" >Custom Journey</button>
+    <div style="margin: 10px 0px 30px 0px;">
+      <h2 class="red-txt">Total: 160€</h2>   
+    </div>
 
-</div>
+
+<!--     <div style="margin: 20px 0px 30px 0px;">
+      <h3>Pay securely now by:</h3>
+      <button class="round btn aligned-center button light dark-header" style="width:200px; height:100%;"><a style="float:left;">**** **** **** 2711</a>  <i style="float:right;"class="icon ion-chevron-down"></i>
+    </button>   
+    </div> -->
+
+
+  <button class="round btn aligned-center button red-btn light" style="width:100%; height:100%;" ng-click="pay()"><strong>PAY WITH CARD</strong><i style="margin-left:10px;"class="icon ion-chevron-right"></i></button>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div style="margin: 20px 10px 5px 10px;">
   <div style="width:80%;" class="aligned-center light">
@@ -122,7 +179,7 @@
 <!-- MASTER -->
 
 
-
+<!-- 
 <div ng-show="statusCode != null && statusCode != undefined && statusCode != ''">
 
   <h4 class="light">Ticker Confirmation:</h4>
@@ -159,8 +216,16 @@
 
 </div>
 
-</div>
+</div> -->
 
 </ion-content> 
+
+
+
+
+<ion-content class="info" ng-show="!tablet">
+NO TABLET
+</ion-content>
+
 
 </ion-view>
