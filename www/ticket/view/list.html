@@ -47,7 +47,6 @@
 
 <ion-list>
 <ion-item auto-list-divider auto-list-divider-value="{{event.group}}" class="item-avatar" ng-repeat="event in events track by $index" ui-sref="detail({event_index: event.id})">
-<!-- <ion-item class="dark" auto-list-divider auto-list-divider-value="{{event.group}}" ng-repeat="event in events track by $index" ui-sref="detail({event_index: $index})"> -->
 <div class="row">
   <div class="list-item" back-img="{{event.image_url}}"></div>
   <div class="col">
@@ -58,6 +57,9 @@
   <i class="icon ion-chevron-right icon-accessory" style="margin-top:25px;"></i>
 </div>
 </ion-item>
+
+
+
 </ion-list>
 
 </div>
@@ -109,8 +111,8 @@
 <ion-item class="dark" 
 ng-repeat="eventType in allDates">
 
-<div style="height:50px; font-weight:bold;">
-  <h2>{{eventType.label}}</h2>
+<div class="ticket-section light" style="height:50px; font-weight:bold; margin: -10px -20px -20px -20px;">
+  <h2 class="light">{{eventType.label}}</h2>
 </div>
 <ion-scroll direction="x" class="wide-as-needed dark" style="margin:-20px -50px -20px -50px; height:270px;">
 <div  ng-show="eventType.date.getTime() == event.date.getTime();"   ui-sref="detail({event_index: event.id})" class="featured-item dark" ng-repeat="event in events track by $index">

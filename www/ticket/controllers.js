@@ -434,9 +434,14 @@ angular.module('inflightApp.ticket')
 
     $scope.itemIndex = $stateParams.event_index;
     Event.findAll().then(function (events) {
-      $scope.events = events;
-      $scope.selectedEvent = events[$scope.itemIndex];
-      console.log($scope.selectedEvent);
+      console.log("----");
+      console.log($scope.itemIndex);
+      for (e in events) {
+        console.log(events[e].id);
+        if (events[e].id == $scope.itemIndex) {
+          $scope.selectedEvent = events[e];
+        }
+      }
     });
 
 }])
@@ -455,9 +460,14 @@ angular.module('inflightApp.ticket')
 
     $scope.itemIndex = $stateParams.event_index;
     Event.findAll().then(function (events) {
-      $scope.events = events;
-      $scope.selectedEvent = events[$scope.itemIndex];
-      console.log($scope.selectedEvent);
+      console.log("----");
+      console.log($scope.itemIndex);
+      for (e in events) {
+        console.log(events[e].id);
+        if (events[e].id == $scope.itemIndex) {
+          $scope.selectedEvent = events[e];
+        }
+      }
     });
 
 }])
@@ -485,33 +495,33 @@ angular.module('inflightApp.ticket')
  * @param  {String} $timeout) {               var lastDivideKey [description]
  * @return {[type]}           [description]
  */
-.directive('autoListDivider', function($timeout) {  
-	var lastDivideKey = "";
+// .directive('autoListDivider', function($timeout) {  
+// 	var lastDivideKey = "";
 
-	return {
-		link: function(scope, element, attrs) {
-			var key = attrs.autoListDividerValue;
+// 	return {
+// 		link: function(scope, element, attrs) {
+// 			var key = attrs.autoListDividerValue;
 
-			var defaultDivideFunction = function(k){
-				return k;
-			}
+// 			var defaultDivideFunction = function(k){
+// 				return k;
+// 			}
       
-			var doDivide = function(){
-				var divideFunction = scope.$apply(attrs.autoListDividerFunction) || defaultDivideFunction;
-				var divideKey = divideFunction(key);
+// 			var doDivide = function(){
+// 				var divideFunction = scope.$apply(attrs.autoListDividerFunction) || defaultDivideFunction;
+// 				var divideKey = divideFunction(key);
 				
-				if(divideKey != lastDivideKey) { 
-					var contentTr = angular.element("<div class='item item-divider ticket-section'>"+divideKey+"</div>");
-					element[0].parentNode.insertBefore(contentTr[0], element[0]);
-				}
+// 				if(divideKey != lastDivideKey) { 
+// 					var contentTr = angular.element("<div class='item item-divider ticket-section'>"+divideKey+"</div>");
+// 					element[0].parentNode.insertBefore(contentTr[0], element[0]);
+// 				}
 
-				lastDivideKey = divideKey;
-			}
+// 				lastDivideKey = divideKey;
+// 			}
 		  
-			$timeout(doDivide,0)
-		}
-	}
-})
+// 			$timeout(doDivide,0)
+// 		}
+// 	}
+// })
 
 /**
  * Fix within contrainer another div so it is sticky
