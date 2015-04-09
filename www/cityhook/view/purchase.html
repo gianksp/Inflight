@@ -2,6 +2,7 @@
 
 <ion-content class="info-light" scrollbar-y="yes">
 
+  <div ng-show="!paid">
   <div style="margin:0 auto; overflow:hidden; height:170px;">
     <img style="margin:0 auto; width:100%;" src="img/purchase_header.png"></img>
   </div>
@@ -15,15 +16,15 @@
   <div style="margin:15px;">
 
 
-    <h2 >Name of Company</h2>
-    <h5 >Operated by Company</h5>
+    <h2 >{{selectedTransport.name}}</h2>
+    <h5 >by {{selectedTransport.by}}</h5>
     <div class="row">
       <div class="col-33">
-        <a>85€</a>
+        <a>{{selectedTransport.price}}€</a>
         <h5 class="red-txt">Per passenger one-way</h5>
       </div>
       <div class="col-33">
-        <a>45mins</a>
+        <a>{{selectedTransport.time}}</a>
         <h5 class="red-txt">Journey time</h5>
       </div>
       <div class="col-33">
@@ -34,31 +35,72 @@
 
     <div style="margin: 20px 0px 30px 0px;">
       <h2>From: London Heathrow</h2>
-      <h2>To: Victoria Station</h2>
+      <h2>To: {{currentSelection.name}}</h2>
     </div>
 
     <div style="margin: 20px 0px 30px 0px;">
-      <h2>Number of passengers: <button class="round btn aligned-center button light dark-header" style="width:80px; height:100%;"><a style="float:left;">2</a>  <i style="float:right;"class="icon ion-chevron-down"></i>
-    </button></h2>   
+      <h2>Number of passengers: <button class="round btn aligned-center button light dark-header" ng-click="openPopover2($event)" style="width:80px; height:100%;"><a style="float:left;">{{passengers}}</a>  <i style="float:right;"class="icon ion-chevron-down"></i>
+    </button>
+
+
+
+
+  </h2>   
     </div>
 
 
     <div style="margin: 10px 0px 30px 0px;">
-      <h2 class="red-txt">Total: 160€</h2>   
+      <h2 class="red-txt">Total: {{totalPrice}}€</h2>   
     </div>
 
 
-    <div style="margin: 20px 0px 30px 0px;">
+<!--     <div style="margin: 20px 0px 30px 0px;">
       <h3>Pay securely now by:</h3>
       <button class="round btn aligned-center button light dark-header" style="width:200px; height:100%;"><a style="float:left;">**** **** **** 2711</a>  <i style="float:right;"class="icon ion-chevron-down"></i>
     </button>   
-    </div>
+    </div> -->
 
 
   <button class="round btn aligned-center button red-btn light" style="width:100%; height:100%;" ng-click="pay()"><strong>PAY WITH CARD</strong><i style="margin-left:10px;"class="icon ion-chevron-right"></i></button>
 
   </div>
 
+</div>
+
+</div>
+<div ng-show="paid">
+  <div class="item header dark-header">
+    <h2 class="aligned-center light">Ticket Confirmation</h2>
+  </div>
+
+  <div class="list card">
+    <div class="row">
+      <div class="col-15 overflow:hidden;">
+        <img src="img/heathrow_express.jpg" style="height:70px; width:70px; overflow:hidden;"></img>
+      </div>
+      <div class="col-66" style="padding-left:10px;">
+        <h4>{{selectedTransport.name}}</h4>
+        <a>{{selectedTransport.by}}</a>
+      </div>
+    </div> 
+      <div>
+      <h4 style="margin:8px;" class="red-txt">Order Confirmation:</h4>
+      <a>{{selectedTransport.price}}-{{selectedTransport.time}}<br>
+        From: London Heathrow<br>
+        To: {{currentSelection.name}} {{formatDate(leaves)}}<br>
+        {{passengers}} Passengers<br>
+        Price {{totalPrice}}€</a>
+      </div>
+      <div class="aligned-center">
+        <img src="img/qr.png" style="width:150px; height:150px;"></img>
+      </div>
+
+        <div class="aligned-center">
+    <img src="img/passbook.png" style="height:50px; width:auto; border-radius:8px;"></img>
+  </div>
+  </div>
+
+</div>
 </div>
 
 </ion-content> 

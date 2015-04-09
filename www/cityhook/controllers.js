@@ -23,16 +23,16 @@
 
     //Default layout tablet
     $rootScope.layoutTablet = true;
-    $scope.tablet = $rootScope.layoutTablet;
+    $scope.layoutTablet = $rootScope.layoutTablet;
 
-    $scope.layoutTitle = "Load Mobile";
+    $scope.layoutTitle = "Load Tablet";
     $scope.moduleTitle = "Load Cityhook";
 
     /**
      * Ticketmaster - Cityhook
      * @return {[type]} [description]
      */
-     $scope.switchModule = function() {
+    $scope.switchModule = function() {
       if ($state.current.name == 'list') {
         $state.go('welcome');
         $scope.moduleTitle = "Load Ticketmaster";
@@ -46,12 +46,11 @@
      * Switch between tablet - mobile
      * @return {[type]} [description]
      */
-     $scope.switchLayout = function() {
+    $scope.switchLayout = function() {
       $rootScope.layoutTablet = !$rootScope.layoutTablet;
-      $scope.tablet = $rootScope.layoutTablet;
-      $scope.layoutTitle = $scope.tablet ? "Load Mobile" : "Load Tablet";
+      $scope.layoutTablet = $rootScope.layoutTablet;
+      $scope.layoutTitle = $scope.layoutTablet ? "Load Mobile" : "Load Tablet";
     }
-
   }])
 
 /**
@@ -65,6 +64,8 @@
   function($rootScope, $scope,$compile,$http,$state,$ionicModal,$ionicPopup, Event, City,$state,$stateParams,$ionicPopover) {
 
     $scope.selectedTransport = null;
+    $scope.passengers = 0;
+    $scope.totalPrice = 0;
 
     $scope.selectTransport = function(transport) {
       $scope.selectedTransport = transport;
@@ -86,19 +87,33 @@
 
     $rootScope.$watch('layoutTablet', function() {
       console.log("changed");
-      $scope.tablet = $rootScope.layoutTablet;
+      $scope.layoutTablet = $rootScope.layoutTablet;
+
+      console.log("->"+$scope.layoutTablet);
 
     });
 
     //Popover content info
     $scope.popoverTitle = null;
-    $scope.popoverContent = [
-    { id : 1, name: "Paddington", lat:51.516674 ,lon:-0.176933},
-    { id : 1, name: "Victoria Station", lat:51.49521, lon:-0.143898},
-    { id : 1, name: "West End", lat:51.2406292,lon:-0.565304},
-    { id : 1, name: "Westminster", lat:51.501272,lon:-0.124941},
-    { id : 1, name: "Chelsea", lat:51.4850925,lon:-0.174936}
+    $scope.popoverContent = [];
+
+    $scope.popoverContentCities = [
+    { id : 1, name: "Paddington", lat:51.516674 ,lon:-0.176933, pic:"img/loc1.png"},
+    { id : 1, name: "Victoria Station", lat:51.49521, lon:-0.143898, pic:"img/loc1.png"},
+    { id : 1, name: "West End", lat:51.2406292,lon:-0.565304, pic:"img/loc1.png"},
+    { id : 1, name: "Westminster", lat:51.501272,lon:-0.124941, pic:"img/loc1.png"},
+    { id : 1, name: "Chelsea", lat:51.4850925,lon:-0.174936, pic:"img/loc1.png"}
     ];
+
+    $scope.popoverContentNumber = [
+    { id : 2, name: 1},
+    { id : 2, name: 2},
+    { id : 2, name: 3},
+    { id : 2, name: 4},
+    { id : 2, name: 5}
+    ];
+
+    $scope.popoverContent = $scope.popoverContentCities;
 
     $scope.currentSelection = $scope.popoverContent[0];
 
@@ -106,6 +121,14 @@
 
 
     console.log($scope.tablet);
+
+    $scope.getDate = function() {
+      if ($scope.leaves != null) {
+        return $scope.leaves.getDate()+"/"+$scope.leaves.getMonth()+" "+$scope.leaves.getHours()+":"+$scope.leaves.getMinutes();
+      } else {
+        return "Pick date";
+      }
+    }
 
     $scope.statusCode = $stateParams.statusCode;
     console.log($scope.statusCode);
@@ -120,6 +143,7 @@
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
+
       var map = new google.maps.Map(document.getElementById("map"),
         mapOptions);
 
@@ -135,6 +159,23 @@
       });
 
       $scope.map = map;
+
+
+            var map2 = new google.maps.Map(document.getElementById("map2"),
+        mapOptions);
+
+
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map2,
+        title: 'Uluru (Ayers Rock)'
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map2,marker);
+      });
+
+      $scope.map2 = map2;
     }
 
 
@@ -145,9 +186,16 @@
 
 
   $scope.selectItem = function(item) {
-    $scope.currentSelection = item;
-    $scope.closePopover();
-    $scope.applySearchFilter();
+
+    if (item.id == 1) {
+      $scope.currentSelection = item;
+      $scope.closePopover();
+      $scope.applySearchFilter();
+    } else {
+      $scope.passengers = item.name;
+      $scope.totalPrice = item.name*$scope.selectedTransport.price;
+      $scope.closePopover2();
+    }
   }
 
   $scope.customState = function(){
@@ -166,17 +214,33 @@
     $scope.popover = popover;
   });
 
+  $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover2 = popover;
+  });
+
   $scope.pay = function() {
     $scope.step = 3;
     console.log("payyyy");
   }
 
   $scope.openPopover = function($event) {
+    $scope.popoverContent = $scope.popoverContentCities;
     console.log($scope.popover);
     $scope.popover.show($event);
   };
   $scope.closePopover = function() {
     $scope.popover.hide();
+  };
+
+  $scope.openPopover2 = function($event) {
+    $scope.popoverContent = $scope.popoverContentNumber;
+    console.log($scope.popover2);
+    $scope.popover2.show($event);
+  };
+  $scope.closePopover2 = function() {
+    $scope.popover2.hide();
   };
   //Cleanup the popover when we're done with it!
   $scope.$on('$destroy', function() {
@@ -191,6 +255,12 @@
     // Execute action
   });
 
+  $scope.findRoutes = function(){
+    console.log("gg");
+    $rootScope.transports = $scope.transports;
+    $state.go('routeDetail');
+    $scope.applySearchFilter();
+  }
 
   $scope.applySearchFilter = function() {
     $scope.step = 1;
@@ -279,6 +349,9 @@
  .controller('RouteController', ['$scope','$http','$state','$stateParams','Event','$ionicPopover',
   function($scope,$http,$state,$stateParams, Event,$ionicPopover) {
 
+
+    console.log("CONIO");
+
    $scope.initialize = function() {
     var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
     
@@ -340,6 +413,7 @@
 
   $scope.findRoutes = function(){
     console.log("gg");
+    $rootScope.selectedTransport = $scope.selectedTransport;
     $state.go('routeDetail');
   }
 
@@ -354,8 +428,39 @@
  * @param  {[type]} Event)       {               $scope.itemIndex [description]
  * @return {[type]}              [description]
  */
- .controller('RouteDetailController', ['$scope','$http','$ionicPopup','$state','$stateParams','Event',
-  function($scope,$http,$ionicPopup,$state,$stateParams, Event) {
+ .controller('RouteDetailController', ['$ionicPopover','$rootScope','$scope','$http','$ionicPopup','$state','$stateParams','Event',
+  function($ionicPopover,$rootScope, $scope,$http,$ionicPopup,$state,$stateParams, Event) {
+
+    console.log($rootScope.transports);
+    $scope.transports = $rootScope.transports;
+
+
+    $scope.popoverContentNumber = [
+    { id : 2, name: 1},
+    { id : 2, name: 2},
+    { id : 2, name: 3},
+    { id : 2, name: 4},
+    { id : 2, name: 5}
+    ];
+
+    $rootScope.selectedTransport = $scope.transports[1];
+    $scope.totalPrice = 0;
+
+      $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover2 = popover;
+  });
+$scope.passengers = 0;
+
+  $scope.openPopover2 = function($event) {
+    $scope.popoverContent = $scope.popoverContentNumber;
+    console.log($scope.popover2);
+    $scope.popover2.show($event);
+  };
+  $scope.closePopover2 = function() {
+    $scope.popover2.hide();
+  };
 
 
   }])
@@ -369,13 +474,73 @@
  * @param  {[type]} Event)       {               $scope.itemIndex [description]
  * @return {[type]}              [description]
  */
- .controller('PurchaseController', ['$scope','$http','$state','$stateParams','Event',
-  function($scope,$http,$state,$stateParams, Event) {
+ .controller('PurchaseController', ['$rootScope','$ionicPopover','$scope','$http','$state','$stateParams','Event',
+  function($rootScope,$ionicPopover,$scope,$http,$state,$stateParams, Event) {
 
+    $scope.paid = false;
     $scope.pay = function(){
-      $state.go('welcome',{ statusCode: true });
+      $scope.paid = true;
     }
 
+
+    console.log($rootScope.transports);
+    $scope.transports = $rootScope.transports;
+    $scope.selectedTransport = $rootScope.selectedTransport;
+
+    $scope.popoverContentNumber = [
+    { id : 2, name: 1},
+    { id : 2, name: 2},
+    { id : 2, name: 3},
+    { id : 2, name: 4},
+    { id : 2, name: 5}
+    ];
+
+
+    $scope.totalPrice = 0;
+
+      $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover2 = popover;
+  });
+$scope.passengers = 0;
+
+  $scope.openPopover2 = function($event) {
+    $scope.popoverContent = $scope.popoverContentNumber;
+    console.log($scope.popover2);
+    $scope.popover2.show($event);
+  };
+  $scope.closePopover2 = function() {
+    $scope.popover2.hide();
+  };
+
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+  // Execute action on hide popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
+
+
+
+  $scope.selectItem = function(item) {
+
+    if (item.id == 1) {
+      $scope.currentSelection = item;
+      $scope.closePopover();
+      $scope.applySearchFilter();
+    } else {
+      $scope.passengers = item.name;
+      $scope.totalPrice = item.name*$scope.selectedTransport.price;
+      $scope.closePopover2();
+    }
+  }
 
   }])
 
