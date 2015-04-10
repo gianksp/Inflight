@@ -27,7 +27,9 @@
 
   <div style="height:200px; margin:30px 10px 30px 10px;">
 
-     <div class="map round" id="map2" style="with:100%; height:100%;" data-tap-disabled="true"></div>
+     <div class="map round" id="map2" style="with:100%; height:100%; overflow: hidden;" data-tap-disabled="true">
+     <img style="width:100%; height:auto;" ng-src="{{currentSelection.pic}}">{{currentSelection.pic}}</img>
+   </div>
 
 
   </div>
@@ -54,9 +56,10 @@
     <a class="btn button" ng-click="leavePicker()"><strong>Depart</strong><i style="margin-left:10px; width:15px; height:15px;"class="icon ion-chevron-down"></i></a>
     <a class="btn button" ng-click="returnPicker()"><strong>Return</strong><i style="margin-left:10px; width:15px; height:15px;"class="icon ion-chevron-down"></i></a>
   </div>
-<div class="google-map">
-  <div class="map" id="map"  data-tap-disabled="true">
-</div>
+<div class="google-map" style="overflow=hidden;">
+  <div class="map" id="map"  data-tap-disabled="true" style="overflow=hidden;">
+    <img style="width:100%; height:auto;" ng-src="{{currentSelection.pic}}">{{currentSelection.pic}}</img>
+  </div>
 
   </div>
 </div>

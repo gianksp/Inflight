@@ -99,10 +99,10 @@
 
     $scope.popoverContentCities = [
     { id : 1, name: "Paddington", lat:51.516674 ,lon:-0.176933, pic:"img/loc1.png"},
-    { id : 1, name: "Victoria Station", lat:51.49521, lon:-0.143898, pic:"img/loc1.png"},
-    { id : 1, name: "West End", lat:51.2406292,lon:-0.565304, pic:"img/loc1.png"},
-    { id : 1, name: "Westminster", lat:51.501272,lon:-0.124941, pic:"img/loc1.png"},
-    { id : 1, name: "Chelsea", lat:51.4850925,lon:-0.174936, pic:"img/loc1.png"}
+    { id : 1, name: "Victoria Station", lat:51.49521, lon:-0.143898, pic:"img/loc2.png"},
+    { id : 1, name: "West End", lat:51.2406292,lon:-0.565304, pic:"img/loc3.png"},
+    { id : 1, name: "Westminster", lat:51.501272,lon:-0.124941, pic:"img/loc4.png"},
+    { id : 1, name: "Chelsea", lat:51.4850925,lon:-0.174936, pic:"img/loc5.png"}
     ];
 
     $scope.popoverContentNumber = [
@@ -136,46 +136,46 @@
     $scope.initialize = function() {
 
       
-      var myLatlng = new google.maps.LatLng($scope.currentSelection.lat,$scope.currentSelection.lon);
+      // var myLatlng = new google.maps.LatLng($scope.currentSelection.lat,$scope.currentSelection.lon);
       
-      var mapOptions = {
-        center: myLatlng,
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
+      // var mapOptions = {
+      //   center: myLatlng,
+      //   zoom: 16,
+      //   mapTypeId: google.maps.MapTypeId.ROADMAP
+      // };
 
-      var map = new google.maps.Map(document.getElementById("map"),
-        mapOptions);
-
-
-      var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'Uluru (Ayers Rock)'
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map,marker);
-      });
-
-      $scope.map = map;
+      // var map = new google.maps.Map(document.getElementById("map"),
+      //   mapOptions);
 
 
-            var map2 = new google.maps.Map(document.getElementById("map2"),
-        mapOptions);
+      // var marker = new google.maps.Marker({
+      //   position: myLatlng,
+      //   map: map,
+      //   title: 'Uluru (Ayers Rock)'
+      // });
+
+      // google.maps.event.addListener(marker, 'click', function() {
+      //   infowindow.open(map,marker);
+      // });
+
+      // $scope.map = map;
 
 
-      var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map2,
-        title: 'Uluru (Ayers Rock)'
-      });
+      //       var map2 = new google.maps.Map(document.getElementById("map2"),
+      //   mapOptions);
 
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map2,marker);
-      });
 
-      $scope.map2 = map2;
+      // var marker = new google.maps.Marker({
+      //   position: myLatlng,
+      //   map: map2,
+      //   title: 'Uluru (Ayers Rock)'
+      // });
+
+      // google.maps.event.addListener(marker, 'click', function() {
+      //   infowindow.open(map2,marker);
+      // });
+
+      // $scope.map2 = map2;
     }
 
 
@@ -349,32 +349,29 @@
  .controller('RouteController', ['$scope','$http','$state','$stateParams','Event','$ionicPopover',
   function($scope,$http,$state,$stateParams, Event,$ionicPopover) {
 
-
-    console.log("CONIO");
-
    $scope.initialize = function() {
-    var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
+    // var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
     
-    var mapOptions = {
-      center: myLatlng,
-      zoom: 16,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("map-detail"),
-      mapOptions);
+    // var mapOptions = {
+    //   center: myLatlng,
+    //   zoom: 16,
+    //   mapTypeId: google.maps.MapTypeId.ROADMAP
+    // };
+    // var map = new google.maps.Map(document.getElementById("map-detail"),
+    //   mapOptions);
 
 
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: 'Uluru (Ayers Rock)'
-    });
+    // var marker = new google.maps.Marker({
+    //   position: myLatlng,
+    //   map: map,
+    //   title: 'Uluru (Ayers Rock)'
+    // });
 
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-    });
+    // google.maps.event.addListener(marker, 'click', function() {
+    //   infowindow.open(map,marker);
+    // });
 
-    $scope.map = map;
+    // $scope.map = map;
   }
 
   $scope.routeType = $stateParams.type;
